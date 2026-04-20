@@ -1,0 +1,247 @@
+[gd_scene format=3 uid="uid://hxbifoe2rmu2"]
+
+[ext_resource type="Texture2D" uid="uid://mley5c3e1bs6" path="res://assets/map7/moon-lord.png" id="1_s5a35"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y32b8"]
+height = 34.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyx8y"]
+atlas = ExtResource("1_s5a35")
+region = Rect2(1028, 651, 514, 651)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8a4j0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyx8y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7sx1o"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fn7kc"]
+bg_color = Color(0.972549, 0.3254902, 0.105882354, 1)
+border_color = Color(0.02745098, 0.019607844, 0.023529412, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mkh4"]
+atlas = ExtResource("1_s5a35")
+region = Rect2(1148, 264, 164, 132)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6jlih"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mkh4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_meiii"]
+height = 36.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkx7f"]
+atlas = ExtResource("1_s5a35")
+region = Rect2(91, 311, 324, 292)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4qkf"]
+atlas = ExtResource("1_s5a35")
+region = Rect2(91, 19, 324, 292)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrnhp"]
+atlas = ExtResource("1_s5a35")
+region = Rect2(91, 603, 324, 292)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6dkoh"]
+atlas = ExtResource("1_s5a35")
+region = Rect2(91, 895, 324, 292)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iwk8w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkx7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4qkf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrnhp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6dkoh")
+}],
+"loop": false,
+"name": &"close-palm",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6dkoh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrnhp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkx7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4qkf")
+}],
+"loop": false,
+"name": &"open-palm",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28aai"]
+atlas = ExtResource("1_s5a35")
+region = Rect2(1162, 412, 119, 131)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ivdd3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28aai")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7sx1o"]
+atlas = ExtResource("1_s5a35")
+region = Rect2(1984, 559, 31, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fn7kc"]
+atlas = ExtResource("1_s5a35")
+region = Rect2(1984, 602, 31, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_er2oj"]
+atlas = ExtResource("1_s5a35")
+region = Rect2(1984, 645, 31, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rofb"]
+atlas = ExtResource("1_s5a35")
+region = Rect2(1984, 688, 31, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3241"]
+atlas = ExtResource("1_s5a35")
+region = Rect2(1984, 731, 31, 43)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_va0qh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7sx1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fn7kc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_er2oj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rofb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3241")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MoonLordMap7" type="CharacterBody2D" unique_id=186856472]
+
+[node name="MainWeakPoint" type="CollisionShape2D" parent="." unique_id=1763810309]
+position = Vector2(57, 64)
+shape = SubResource("CapsuleShape2D_y32b8")
+
+[node name="Head" type="AnimatedSprite2D" parent="MainWeakPoint" unique_id=696353119]
+position = Vector2(0, 63)
+scale = Vector2(0.48832688, 0.4919355)
+sprite_frames = SubResource("SpriteFrames_8a4j0")
+
+[node name="ProgressBar3" type="ProgressBar" parent="MainWeakPoint" unique_id=319358748]
+visible = false
+offset_left = -23.0
+offset_top = -26.0
+offset_right = 24.0
+offset_bottom = -19.0
+theme_override_styles/background = SubResource("StyleBoxFlat_7sx1o")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fn7kc")
+value = 50.0
+show_percentage = false
+
+[node name="WeakPoint" type="AnimatedSprite2D" parent="MainWeakPoint" unique_id=965310596]
+position = Vector2(4.9999847, 6)
+scale = Vector2(0.4542684, 0.43181822)
+sprite_frames = SubResource("SpriteFrames_6jlih")
+
+[node name="LeftSubWeakPoint" type="CollisionShape2D" parent="." unique_id=576490547]
+position = Vector2(171, 264)
+shape = SubResource("CapsuleShape2D_meiii")
+
+[node name="Hand" type="AnimatedSprite2D" parent="LeftSubWeakPoint" unique_id=1824566354]
+position = Vector2(-6, -26)
+scale = Vector2(0.4537037, 0.48630136)
+sprite_frames = SubResource("SpriteFrames_iwk8w")
+animation = &"open-palm"
+frame = 3
+frame_progress = 1.0
+
+[node name="ProgressBar2" type="ProgressBar" parent="LeftSubWeakPoint/Hand" unique_id=1119428956]
+offset_left = -41.877533
+offset_top = 146.00002
+offset_right = 61.714325
+offset_bottom = 158.33803
+theme_override_styles/background = SubResource("StyleBoxFlat_7sx1o")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fn7kc")
+value = 50.0
+show_percentage = false
+
+[node name="WeakPoint" type="AnimatedSprite2D" parent="LeftSubWeakPoint/Hand" unique_id=710241676]
+position = Vector2(11.020386, 57.577477)
+scale = Vector2(1.0546218, 1.1335878)
+sprite_frames = SubResource("SpriteFrames_ivdd3")
+frame_progress = 0.7592524
+
+[node name="RightSubWeakPoint" type="CollisionShape2D" parent="." unique_id=1654016718]
+position = Vector2(-52, 255)
+shape = SubResource("CapsuleShape2D_meiii")
+
+[node name="Hand" type="AnimatedSprite2D" parent="RightSubWeakPoint" unique_id=2003179572]
+position = Vector2(-6, -26)
+scale = Vector2(0.4537037, 0.48630136)
+sprite_frames = SubResource("SpriteFrames_iwk8w")
+animation = &"open-palm"
+frame = 3
+frame_progress = 1.0
+
+[node name="WeakPoint" type="AnimatedSprite2D" parent="RightSubWeakPoint/Hand" unique_id=1685009525]
+position = Vector2(11.020386, 57.577477)
+scale = Vector2(1.0546218, 1.1335878)
+sprite_frames = SubResource("SpriteFrames_ivdd3")
+frame_progress = 0.5074
+
+[node name="ProgressBar" type="ProgressBar" parent="RightSubWeakPoint/Hand" unique_id=1032796216]
+offset_left = -41.87755
+offset_top = 148.05632
+offset_right = 61.714294
+offset_bottom = 160.39433
+theme_override_styles/background = SubResource("StyleBoxFlat_7sx1o")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fn7kc")
+value = 50.0
+show_percentage = false
+
+[node name="BulletSprite" type="AnimatedSprite2D" parent="." unique_id=1753580681]
+visible = false
+position = Vector2(-5, 8)
+rotation = -2.4374273
+sprite_frames = SubResource("SpriteFrames_va0qh")
+frame_progress = 0.4712422

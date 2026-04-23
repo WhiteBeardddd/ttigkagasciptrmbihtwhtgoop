@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bm73hhb81v628"
+path="res://.godot/imported/hurt.ogg-1bbcc3a359bb8efca3f0a4ee435d9df3.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/gothChurch/gothicvania church/assets/sounds/hurt.ogg"
+dest_files=["res://.godot/imported/hurt.ogg-1bbcc3a359bb8efca3f0a4ee435d9df3.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -5309,7 +5309,7 @@ sources/1 = SubResource("TileSetAtlasSource_iqxaf")
 scroll_scale = Vector2(0, 0)
 scroll_offset = Vector2(-1790, 43)
 repeat_size = Vector2(2700, 0)
-repeat_times = 2
+repeat_times = 99
 follow_viewport = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D/Background" unique_id=797379356]
@@ -5328,7 +5328,7 @@ centered = false
 scroll_scale = Vector2(0.01, 0)
 scroll_offset = Vector2(-1790, 43)
 repeat_size = Vector2(2700, 0)
-repeat_times = 2
+repeat_times = 99
 follow_viewport = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D/TreeBg1" unique_id=937572004]
@@ -5347,7 +5347,7 @@ centered = false
 scroll_scale = Vector2(0.02, 0)
 scroll_offset = Vector2(-1790, 43)
 repeat_size = Vector2(2700, 0)
-repeat_times = 2
+repeat_times = 99
 follow_viewport = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D/TreeBg2" unique_id=567094116]
@@ -5366,7 +5366,7 @@ centered = false
 scroll_scale = Vector2(0.03, 0)
 scroll_offset = Vector2(-2162, 43)
 repeat_size = Vector2(2700, 0)
-repeat_times = 2
+repeat_times = 99
 follow_viewport = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D/TreeFg1" unique_id=2044985510]
@@ -5385,7 +5385,7 @@ centered = false
 scroll_scale = Vector2(0.05, 0)
 scroll_offset = Vector2(-1790, 43)
 repeat_size = Vector2(2700, 0)
-repeat_times = 2
+repeat_times = 99
 follow_viewport = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D/TreeFg2" unique_id=1066077699]
@@ -5404,7 +5404,7 @@ centered = false
 scroll_scale = Vector2(0.35, 0)
 scroll_offset = Vector2(-1790, 43)
 repeat_size = Vector2(1856, 0)
-repeat_times = 2
+repeat_times = 99
 follow_viewport = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D/Light1" unique_id=1595831864]
@@ -5423,7 +5423,7 @@ centered = false
 scroll_scale = Vector2(0.06, 0)
 scroll_offset = Vector2(-1790, 43)
 repeat_size = Vector2(2700, 0)
-repeat_times = 2
+repeat_times = 99
 follow_viewport = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D/Leaves" unique_id=1745945484]

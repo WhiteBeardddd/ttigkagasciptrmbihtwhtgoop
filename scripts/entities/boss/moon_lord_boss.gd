@@ -64,7 +64,12 @@ var projectile_shooter: MoonLordProjectileShooter
 @onready var main_weakpoint: CollisionShape2D = $MainWeakPoint
 @onready var left_weakpoint: CollisionShape2D = $LeftSubWeakPoint
 @onready var right_weakpoint: CollisionShape2D = $RightSubWeakPoint
-
+@onready var main_fx: AnimatedSprite2D = $MainWeakPoint/HeadShootEffects
+@onready var left_fx: AnimatedSprite2D = $LeftSubWeakPoint/Hand/LeftShootEffects
+@onready var right_fx: AnimatedSprite2D = $RightSubWeakPoint/Hand/RightShootEffects
+@onready var main_sfx: AudioStreamPlayer2D = $MainWeakPoint/HeadShootSFX
+@onready var left_sfx: AudioStreamPlayer2D = $LeftSubWeakPoint/Hand/LeftShootSFX
+@onready var right_sfx: AudioStreamPlayer2D = $RightSubWeakPoint/Hand/RightShootSFX
 
 # ─────────────────────────────────────────────
 func _ready() -> void:
@@ -80,9 +85,18 @@ func _ready() -> void:
 			main_weakpoint,
 			left_weakpoint,
 			right_weakpoint
+		],
+		[
+			main_fx,
+			left_fx,
+			right_fx
+		],
+		[
+			main_sfx,
+			left_sfx,
+			right_sfx
 		]
 	)
-
 
 func _physics_process(delta: float) -> void:
 	if player == null:

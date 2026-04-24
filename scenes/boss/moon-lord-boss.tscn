@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://hxbifoe2rmu2"]
 
-[ext_resource type="Texture2D" uid="uid://mley5c3e1bs6" path="res://assets/map7/moon-lord.png" id="1_s5a35"]
+[ext_resource type="Texture2D" uid="uid://c4np33ewunbqv" path="res://assets/map7/moon-lord.png" id="1_s5a35"]
+[ext_resource type="AudioStream" uid="uid://dupo6hup3cnom" path="res://assets/map7/shoot-sfx.mp3" id="2_fn7kc"]
+[ext_resource type="Texture2D" uid="uid://cwxjhbyn4uu2t" path="res://assets/map7/particle.png" id="3_er2oj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y32b8"]
 height = 34.0
@@ -40,6 +42,63 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_va0qh"]
+atlas = ExtResource("1_s5a35")
+region = Rect2(380, 1428, 190, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pm4mm"]
+atlas = ExtResource("1_s5a35")
+region = Rect2(380, 1530, 190, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axfxj"]
+atlas = ExtResource("1_s5a35")
+region = Rect2(380, 1632, 190, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhq17"]
+atlas = ExtResource("1_s5a35")
+region = Rect2(380, 1734, 190, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0ncv"]
+atlas = ExtResource("1_s5a35")
+region = Rect2(380, 1836, 190, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0qou"]
+atlas = ExtResource("1_s5a35")
+region = Rect2(380, 1938, 190, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_js2l5"]
+atlas = ExtResource("1_s5a35")
+region = Rect2(380, 2040, 190, 102)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jt5pc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_va0qh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pm4mm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axfxj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhq17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0ncv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0qou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_js2l5")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_meiii"]
@@ -156,6 +215,19 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_6rofb"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_b3241"]
+gradient = SubResource("Gradient_6rofb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_va0qh"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+gravity = Vector3(0, 0, 0)
+scale_min = 0.19999999
+scale_max = 0.39999998
+color_ramp = SubResource("GradientTexture1D_b3241")
+
 [node name="MoonLordMap7" type="CharacterBody2D" unique_id=186856472]
 
 [node name="MainWeakPoint" type="CollisionShape2D" parent="." unique_id=1763810309]
@@ -168,7 +240,6 @@ scale = Vector2(0.48832688, 0.4919355)
 sprite_frames = SubResource("SpriteFrames_8a4j0")
 
 [node name="ProgressBar3" type="ProgressBar" parent="MainWeakPoint" unique_id=319358748]
-visible = false
 offset_left = -23.0
 offset_top = -26.0
 offset_right = 24.0
@@ -182,6 +253,16 @@ show_percentage = false
 position = Vector2(4.9999847, 6)
 scale = Vector2(0.4542684, 0.43181822)
 sprite_frames = SubResource("SpriteFrames_6jlih")
+
+[node name="HeadShootEffects" type="AnimatedSprite2D" parent="MainWeakPoint" unique_id=1394480604]
+position = Vector2(-2, 2.999998)
+scale = Vector2(0.3469925, 0.38974062)
+sprite_frames = SubResource("SpriteFrames_jt5pc")
+frame = 6
+frame_progress = 1.0
+
+[node name="HeadShootSFX" type="AudioStreamPlayer2D" parent="MainWeakPoint" unique_id=1525055249]
+stream = ExtResource("2_fn7kc")
 
 [node name="LeftSubWeakPoint" type="CollisionShape2D" parent="." unique_id=576490547]
 position = Vector2(171, 264)
@@ -211,6 +292,16 @@ scale = Vector2(1.0546218, 1.1335878)
 sprite_frames = SubResource("SpriteFrames_ivdd3")
 frame_progress = 0.7592524
 
+[node name="LeftShootEffects" type="AnimatedSprite2D" parent="LeftSubWeakPoint/Hand" unique_id=10396482]
+position = Vector2(8.816317, 55.521107)
+scale = Vector2(0.662406, 0.68144196)
+sprite_frames = SubResource("SpriteFrames_jt5pc")
+frame = 6
+frame_progress = 1.0
+
+[node name="LeftShootSFX" type="AudioStreamPlayer2D" parent="LeftSubWeakPoint/Hand" unique_id=2068446581]
+stream = ExtResource("2_fn7kc")
+
 [node name="RightSubWeakPoint" type="CollisionShape2D" parent="." unique_id=1654016718]
 position = Vector2(-52, 255)
 shape = SubResource("CapsuleShape2D_meiii")
@@ -239,9 +330,26 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_fn7kc")
 value = 50.0
 show_percentage = false
 
+[node name="RightShootEffects" type="AnimatedSprite2D" parent="RightSubWeakPoint/Hand" unique_id=1450410244]
+position = Vector2(8.816317, 55.521107)
+scale = Vector2(0.662406, 0.68144196)
+sprite_frames = SubResource("SpriteFrames_jt5pc")
+frame = 6
+frame_progress = 1.0
+
+[node name="RightShootSFX" type="AudioStreamPlayer2D" parent="RightSubWeakPoint/Hand" unique_id=119032390]
+stream = ExtResource("2_fn7kc")
+
 [node name="BulletSprite" type="AnimatedSprite2D" parent="." unique_id=1753580681]
 visible = false
 position = Vector2(-5, 8)
 rotation = -2.4374273
 sprite_frames = SubResource("SpriteFrames_va0qh")
 frame_progress = 0.4712422
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="BulletSprite" unique_id=609053115]
+amount = 30
+texture = ExtResource("3_er2oj")
+lifetime = 0.4
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_va0qh")

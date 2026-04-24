@@ -8,6 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://dio5bctlymc2d" path="res://assets/map2/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="10_rbgve"]
 [ext_resource type="PackedScene" uid="uid://hxbifoe2rmu2" path="res://scenes/boss/moon-lord-boss.tscn" id="11_fsobl"]
 [ext_resource type="Script" uid="uid://c3yc7y6tmpky0" path="res://scripts/entities/boss/moon_lord_boss.gd" id="12_g8cm5"]
+[ext_resource type="AudioStream" uid="uid://dv6v7dq2iu0eu" path="res://assets/map7/background-music.mp3" id="13_2epj0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_440qe"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2epj0"]
+bg_color = Color(0.972549, 0.3254902, 0.105882354, 1)
+border_color = Color(0.02745098, 0.019607844, 0.023529412, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4qvcq"]
 

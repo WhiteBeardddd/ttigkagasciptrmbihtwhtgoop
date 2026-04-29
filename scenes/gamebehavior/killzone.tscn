@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://yqoe6voum5by"]
+
+[ext_resource type="Script" uid="uid://o8cn53orliyc" path="res://scripts/gamemanager/worldbehavior/kill_zone.gd" id="1_176ib"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_l52ih"]
+
+[node name="Killzone" type="Area2D" unique_id=814764024]
+script = ExtResource("1_176ib")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1500755972]
+shape = SubResource("WorldBoundaryShape2D_l52ih")
+
+[node name="Timer" type="Timer" parent="." unique_id=1997261861]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

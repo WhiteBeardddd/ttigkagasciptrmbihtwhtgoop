@@ -856,10 +856,8 @@ script = ExtResource("1_jfp34")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=192615170]
 sprite_frames = SubResource("SpriteFrames_f6vmv")
-animation = &"roll"
-autoplay = "idle"
-frame = 11
-frame_progress = 1.0
+animation = &"hit"
+frame_progress = 0.9353095
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1130195283]
 position = Vector2(-4, 21)

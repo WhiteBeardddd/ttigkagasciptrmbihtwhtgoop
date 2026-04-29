@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dysloytv7f22o"]
 
 [ext_resource type="Script" uid="uid://btq87t375olvx" path="res://scripts/entities/enemy/demon/demon_1.gd" id="1_1xnnm"]
-[ext_resource type="Texture2D" uid="uid://0xde5u5drvqf" path="res://scenes/enemy/animations/west/spritesheet.png" id="1_ivmi1"]
-[ext_resource type="Texture2D" uid="uid://cuhm3r15id1jg" path="res://scenes/enemy/animations/punching_west/spritesheet (1).png" id="3_3ae06"]
-[ext_resource type="Texture2D" uid="uid://du88refgmq071" path="res://scenes/enemy/animations/flying/spritesheet (2).png" id="4_dw28v"]
+[ext_resource type="Texture2D" uid="uid://0xde5u5drvqf" path="res://assets/demon_animation/animations/west/spritesheet.png" id="1_ivmi1"]
+[ext_resource type="Texture2D" uid="uid://cuhm3r15id1jg" path="res://assets/demon_animation/animations/punching_west/spritesheet (1).png" id="3_3ae06"]
+[ext_resource type="Texture2D" uid="uid://du88refgmq071" path="res://assets/demon_animation/animations/flying/spritesheet (2).png" id="4_dw28v"]
 [ext_resource type="Script" uid="uid://bigep6cow87an" path="res://scripts/entities/enemy/demon/Hurtbox.gd" id="5_rk35g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mjg7i"]
@@ -254,3 +254,12 @@ script = ExtResource("5_rk35g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1516621358]
 shape = SubResource("CapsuleShape2D_rk35g")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1161282925]
+modulate = Color(1, 0.21960784, 0.08627451, 1)
+offset_left = -9.0
+offset_top = -32.0
+offset_right = 10.0
+offset_bottom = -28.0
+value = 100.0
+show_percentage = false

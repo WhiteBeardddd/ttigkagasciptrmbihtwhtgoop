@@ -5,11 +5,11 @@ extends Node2D
 
 var facing_right := true
 
-const ATTACK_DATA := {
-	"attack1":       [12, 48,  0,  40, 28, 0.12],
-	"attack2":       [18, 52,  0,  48, 32, 0.14],
-	"attack3":       [25, 56, -4,  56, 36, 0.16],
-	"crouch_attack": [10, 44,  8,  36, 20, 0.10],
+const ATTACK_DATA := { # [dmg, x, y, width, height, timeframe, knockback]
+	"attack1":       [12, 32,  17,  50, 40, 0.12, 250.0],
+	"attack2":       [18, 32,  17,  50, 40, 0.14, 350.0],
+	"attack3":       [25, 32,  17,  50, 40, 0.16, 500.0],
+	"crouch_attack": [10, 32,  17,  50, 40, 0.10, 100.0],
 }
 
 func spawn_hitbox(attack_name: String) -> void:
@@ -19,6 +19,7 @@ func spawn_hitbox(attack_name: String) -> void:
 	var hitbox = hitbox_scene.instantiate()
 	hitbox.damage   = cfg[0]
 	hitbox.lifetime = cfg[5]
+	hitbox.knockback_force = cfg[6]
 	var sign_x = 1.0 if facing_right else -1.0
 	var knight = get_tree().get_first_node_in_group("player")
 	var origin = knight.global_position

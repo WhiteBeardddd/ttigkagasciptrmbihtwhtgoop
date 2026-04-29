@@ -82,22 +82,24 @@ theme_override_font_sizes/font_size = 21
 theme_override_styles/normal = SubResource("StyleBoxFlat_pm2xe")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_pm2xe")
 theme_override_styles/hover = SubResource("StyleBoxFlat_pm2xe")
-text = "Quit Game"
+text = "Quit"
 
 [node name="Label" type="Label" parent="." unique_id=46692804]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -441.5
+offset_left = -1087.5
 offset_top = 49.0
-offset_right = 441.5
+offset_right = 1087.5
 offset_bottom = 164.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_btxxm")
-theme_override_font_sizes/font_size = 66
-text = "DCISM SUNTUKAN"
+theme_override_font_sizes/font_size = 30
+text = "That Time I Got Killed and Got a Second Chance 
+in Purgatory to Redeem Myself but I Have to 
+Work Hard to Get Out of Purgatory"
 horizontal_alignment = 1
 vertical_alignment = 1
 

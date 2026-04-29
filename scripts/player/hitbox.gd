@@ -3,6 +3,7 @@ extends Area2D
 
 @export var damage  : int   = 10
 @export var lifetime: float = 0.15
+@export var knockback_force: float = 300.0
 
 @onready var shape: CollisionShape2D = $CollisionShape2D
 
@@ -22,4 +23,5 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	if area.has_method("take_damage"):
 		_hit_targets.append(area)
-		area.take_damage(damage)       # remove the print line here too
+		var direction = Vector2(sign(scale.x), -0.3).normalized()
+		area.take_damage(damage, direction * knockback_force)

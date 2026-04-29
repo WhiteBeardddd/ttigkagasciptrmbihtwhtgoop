@@ -11,13 +11,10 @@ config_version=5
 [application]
 
 config/name="dcism-suntukan"
-<<<<<<< HEAD
 run/main_scene="uid://dmvsypethwk8f"
-=======
-run/main_scene="uid://3ogsnh6pj2qa"
->>>>>>> 62ca5cc1765443792aa8150c6caa0890a167c9f6
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+<<<<<<<HEADrun/main_scene="uid://dmvsypethwk8f"
 
 [display]
 

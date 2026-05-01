@@ -1,43 +1,58 @@
 [gd_scene format=3 uid="uid://dqmu5j1m58s4x"]
 
 [ext_resource type="Script" uid="uid://epv7yumnpcp7" path="res://scripts/NPC/World_Message.gd" id="1_us420"]
-[ext_resource type="Texture2D" uid="uid://das38u7nwatjn" path="res://assets/WorldMessenger/Sword.png" id="2_dawek"]
+[ext_resource type="Texture2D" uid="uid://dbvcpi6cau1jb" path="res://assets/Sprites/IDLE.png" id="2_dawek"]
 [ext_resource type="Texture2D" uid="uid://bpsjpdsp010vo" path="res://assets/WorldMessenger/spritesheet (4).png" id="3_plrkk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dawek"]
 radius = 73.061615
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_plrkk"]
+atlas = ExtResource("2_dawek")
+region = Rect2(0, 0, 96, 96)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_hk8lk"]
 atlas = ExtResource("2_dawek")
-region = Rect2(0, 0, 64, 64)
+region = Rect2(96, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g12ck"]
 atlas = ExtResource("2_dawek")
-region = Rect2(128, 0, 64, 64)
+region = Rect2(192, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3alij"]
 atlas = ExtResource("2_dawek")
-region = Rect2(256, 0, 64, 64)
+region = Rect2(288, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pp0hu"]
 atlas = ExtResource("2_dawek")
-region = Rect2(384, 0, 64, 64)
+region = Rect2(384, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eq82q"]
 atlas = ExtResource("2_dawek")
-region = Rect2(512, 0, 64, 64)
+region = Rect2(480, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ej70a"]
 atlas = ExtResource("2_dawek")
-region = Rect2(640, 0, 64, 64)
+region = Rect2(576, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gnba4"]
 atlas = ExtResource("2_dawek")
-region = Rect2(768, 0, 64, 64)
+region = Rect2(672, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twrnu"]
+atlas = ExtResource("2_dawek")
+region = Rect2(768, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkhuu"]
+atlas = ExtResource("2_dawek")
+region = Rect2(864, 0, 96, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_twrnu"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plrkk")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hk8lk")
 }, {
@@ -58,6 +73,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gnba4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twrnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xkhuu")
 }],
 "loop": true,
 "name": &"default",
@@ -143,8 +164,9 @@ position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_dawek")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=979266430]
-position = Vector2(0, -1.0000038)
-scale = Vector2(2.46875, 2.1796875)
+modulate = Color(1, 0.14999998, 0.14999998, 1)
+position = Vector2(-1, -7)
+scale = Vector2(1.6484376, 1.4147135)
 sprite_frames = SubResource("SpriteFrames_twrnu")
 autoplay = "default"
 frame_progress = 0.78943586

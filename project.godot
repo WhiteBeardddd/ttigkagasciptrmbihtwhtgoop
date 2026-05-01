@@ -18,8 +18,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameManager="*uid://dllhf5833bor1"
 DialogManager="*uid://cmsuo13ecwfu1"
+GameManager="*uid://dllhf5833bor1"
 
 [display]
 
@@ -105,5 +105,5 @@ advance_dialog={
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
+textures/canvas_textures/default_texture_filter=3
 rendering_device/driver.windows="d3d12"

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d385yikqctoy8" path="res://scripts/NPC/margin_container.gd" id="1_smgu7"]
 [ext_resource type="Texture2D" uid="uid://bpqe10ak4g0rk" path="res://assets/brackeys_assets/fonts/pixil-frame-0 (5).png" id="2_25w50"]
 [ext_resource type="FontFile" uid="uid://clfgbwraji6xo" path="res://assets/brackeys_assets/fonts/PixelOperator8-Bold.ttf" id="3_25w50"]
+[ext_resource type="FontFile" uid="uid://dh2t6adlgfpj0" path="res://assets/brackeys_assets/fonts/PixelOperator8.ttf" id="4_e6i8w"]
 
 [node name="MarginContainer" type="MarginContainer" unique_id=285223250]
 offset_right = 17.0
@@ -27,12 +28,30 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Label" type="Label" parent="MarginContainer" unique_id=559272683]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=241259205]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=559272683]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_25w50")
+theme_override_fonts/font = ExtResource("4_e6i8w")
 theme_override_font_sizes/font_size = 8
 vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=471116935]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=695778437]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=47052031]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.7
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_25w50")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 2
 
 [node name="LetterDisplayTimer" type="Timer" parent="." unique_id=1978693755]
 one_shot = true

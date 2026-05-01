@@ -8,13 +8,15 @@ var text_box: MarginContainer
 var text_box_position: Vector2
 var is_dialog_active: bool = false
 var can_advance_line: bool = false
+var speaker_name: String = ""
 
-func start_dialog(start_position: Vector2, lines: Array[String]) -> void:
+func start_dialog(start_position: Vector2, lines: Array[String], name: String = "") -> void:
 	if is_dialog_active:
 		return
-	
+	print("start_dialog called, name: '", name, "'")
 	dialog_lines = lines
 	text_box_position = start_position
+	speaker_name = name
 	current_line_index = 0
 	_show_text_box()
 	is_dialog_active = true
@@ -24,13 +26,12 @@ func _show_text_box() -> void:
 	text_box.finished_displaying.connect(_on_txt_box_finished_displaying)
 	get_tree().root.add_child(text_box)
 	text_box.global_position = text_box_position
-	text_box.display_text(dialog_lines[current_line_index])
+	text_box.display_text(dialog_lines[current_line_index], speaker_name)
 	can_advance_line = false
 
 func _on_txt_box_finished_displaying() -> void:
 	can_advance_line = true
 
-# Player presses advance_dialog to go to the next line
 func _unhandled_input(event: InputEvent) -> void:
 	if (
 		event.is_action_pressed("advance_dialog") and

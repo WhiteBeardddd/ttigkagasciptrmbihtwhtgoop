@@ -8,13 +8,24 @@ const MAX_WIDTH: int = 256
 @export var space_time: float = 0.06
 @export var punctuation_time: float = 0.2
 
-@onready var label: Label = $MarginContainer/Label
+@onready var label: Label = $MarginContainer/VBoxContainer/Label
+@onready var name_label: Label = $MarginContainer/VBoxContainer/HBoxContainer/Label
 @onready var timer: Timer = $LetterDisplayTimer
 
 var _full_text: String = ""
 var _letter_index: int = 0
 
-func display_text(text_to_display: String) -> void:
+func display_text(text_to_display: String, speaker_name: String = "") -> void:
+	print("speaker_name received: '", speaker_name, "'")
+	print("name_label node: ", name_label)
+	
+	if speaker_name == "":
+		name_label.hide()
+	else:
+		name_label.text = speaker_name
+		name_label.show()
+		print("name set to: ", name_label.text, " visible: ", name_label.visible)
+
 	_full_text = text_to_display
 	label.text = text_to_display
 	

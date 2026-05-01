@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bln8304lkvwl" path="res://assets/map3/Free Pixel Art Forest/PNG/Background layers/Layer_0011_0.png" id="1_pc7x8"]
 [ext_resource type="Texture2D" uid="uid://b5q3h4mi727bu" path="res://assets/map3/Free Pixel Art Forest/PNG/Background layers/Layer_0009_2.png" id="2_wu4r1"]
-[ext_resource type="PackedScene" uid="uid://blxm3bkbgqn7x" path="res://scenes/characters/NPC2.tscn" id="3_efm78"]
+[ext_resource type="PackedScene" path="res://scenes/characters/NPC2.tscn" id="3_efm78"]
 [ext_resource type="Texture2D" uid="uid://ddsn0dw6yaa7a" path="res://assets/map3/Free Pixel Art Forest/PNG/Background layers/Layer_0006_4.png" id="3_hb8g1"]
 [ext_resource type="Texture2D" uid="uid://cbc4kea73g1v2" path="res://assets/map3/Free Pixel Art Forest/PNG/Background layers/Layer_0005_5.png" id="4_efm78"]
 [ext_resource type="Texture2D" uid="uid://d3m48yg83rn78" path="res://assets/map3/Free Pixel Art Forest/PNG/Background layers/Layer_0003_6.png" id="5_xtb0b"]
@@ -14,8 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bt4ipv3jdb3k5" path="res://assets/map2/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="10_wu4r1"]
 [ext_resource type="Texture2D" uid="uid://7xq8kxafjyc" path="res://assets/map2/Legacy-Fantasy - High Forest 2.3/Assets/Tree-Assets.png" id="11_hb8g1"]
 [ext_resource type="Texture2D" uid="uid://dww38k3lg4rqf" path="res://assets/map2/Legacy-Fantasy - High Forest 2.3/Assets/Props-Rocks.png" id="12_efm78"]
-[ext_resource type="PackedScene" uid="uid://dqmu5j1m58s4x" path="res://scenes/characters/World_Message.tscn" id="15_xtb0b"]
-[ext_resource type="PackedScene" path="res://scenes/maps/map-assets/portal_area.tscn" id="16_d4sba"]
+[ext_resource type="PackedScene" path="res://scenes/characters/World_Message.tscn" id="15_xtb0b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x3ym4"]
 texture = ExtResource("9_nabxy")
@@ -8470,10 +8469,6 @@ lines = Array[String](["Hello there", "I am John Lorenz", "Baho ko Lubot"])
 position = Vector2(-287, 160)
 priority = 1
 lines = Array[String](["Welcome exile.", "To your eternal damnation."])
-
-[node name="PortalArea" parent="." unique_id=2061754388 instance=ExtResource("16_d4sba")]
-position = Vector2(-463, 150)
-target_map = "Map7.tscn"
 
 [connection signal="body_entered" from="Node2D/Area2D" to="Node2D/Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="Node2D/Area2D" to="Node2D/Area2D" method="_on_body_exited"]

@@ -32,5 +32,5 @@ The following core features have been successfully implemented and completed:
 All planned features scheduled before **May 2** have been completed. The project is progressing as expected, with core gameplay systems, health persistence, and interactions now fully functional.
 
 ## Video Here
-Devlog 001: https://www.youtube.com/watch?v=8Je4H_twUUo
-Devlog 002: https://youtu.be/VmSp-TE64TE
+- Devlog 001: https://www.youtube.com/watch?v=8Je4H_twUUo
+- Devlog 002: https://youtu.be/VmSp-TE64TE

@@ -61,47 +61,89 @@ var _circle_angle:    float    = 0.0
 var projectile_shooter: MoonLordProjectileShooter
 
 @onready var bullet_sprite: AnimatedSprite2D = $BulletSprite
-@onready var main_weakpoint: CollisionShape2D = $MainWeakPoint
-@onready var left_weakpoint: CollisionShape2D = $LeftSubWeakPoint
-@onready var right_weakpoint: CollisionShape2D = $RightSubWeakPoint
-@onready var main_fx: AnimatedSprite2D = $MainWeakPoint/HeadShootEffects
-@onready var left_fx: AnimatedSprite2D = $LeftSubWeakPoint/Hand/LeftShootEffects
-@onready var right_fx: AnimatedSprite2D = $RightSubWeakPoint/Hand/RightShootEffects
-@onready var main_sfx: AudioStreamPlayer2D = $MainWeakPoint/HeadShootSFX
-@onready var left_sfx: AudioStreamPlayer2D = $LeftSubWeakPoint/Hand/LeftShootSFX
-@onready var right_sfx: AudioStreamPlayer2D = $RightSubWeakPoint/Hand/RightShootSFX
+
+# Area2D weakpoints (w/ Hurtbox script) — for damage signals
+@onready var main_weakpoint: Area2D = $MainWeakPoint
+@onready var left_weakpoint: Area2D = $LeftWeakPoint
+@onready var right_weakpoint: Area2D = $RightWeakPoint
+
+# CollisionShape2D — for the shooter
+@onready var main_weakpoint_shape: CollisionShape2D = $MainWeakPoint/MainCollision
+@onready var left_weakpoint_shape: CollisionShape2D = $LeftWeakPoint/LeftCollision
+@onready var right_weakpoint_shape: CollisionShape2D = $RightWeakPoint/RightCollision
+
+# FX and SFX — fix paths to match your tree
+@onready var main_fx: AnimatedSprite2D = $MainWeakPoint/MainCollision/HeadShootEffects
+@onready var left_fx: AnimatedSprite2D = $LeftWeakPoint/LeftCollision/Hand/LeftShootEffects
+@onready var right_fx: AnimatedSprite2D = $RightWeakPoint/RightCollision/Hand/RightShootEffects
+@onready var main_sfx: AudioStreamPlayer2D = $MainWeakPoint/MainCollision/HeadShootSFX
+@onready var left_sfx: AudioStreamPlayer2D = $LeftWeakPoint/LeftCollision/Hand/LeftShootSFX
+@onready var right_sfx: AudioStreamPlayer2D = $RightWeakPoint/RightCollision/Hand/RightShootSFX
+
+@onready var hurtbox: Area2D = $Hurtbox
+@export var attack_damage: int = 25
+@export var knockback_friction: float = 600.0
+
+@onready var left_health_bar: ProgressBar = $LeftWeakPoint/LeftCollision/Hand/LeftHealthBar
+@onready var right_health_bar: ProgressBar = $RightWeakPoint/RightCollision/Hand/RightHealthBar
+@onready var overall_health_bar: ProgressBar = $HUD/HealthBar
+
+var _left_hp: int = 100
+var _right_hp: int = 100
+var current_hp: int
+var is_knocked_back: bool = false
+var is_dead: bool = false
+
+var hitbox_scene: PackedScene = preload("res://scenes/characters/Hitbox.tscn")
 
 # ─────────────────────────────────────────────
 func _ready() -> void:
 	_find_player()
+
+	left_health_bar.max_value    = 100
+	right_health_bar.max_value   = 100
+	overall_health_bar.max_value = 200
+	left_health_bar.value        = 100
+	right_health_bar.value       = 100
+	overall_health_bar.value     = 200
+	
+	# Connect damage signals from each weakpoint
+	left_weakpoint.damaged.connect(_on_left_damaged)
+	right_weakpoint.damaged.connect(_on_right_damaged)
+	
 	_enter_flying_phase()
 	projectile_shooter = MoonLordProjectileShooter.new()
 	add_child(projectile_shooter)
-
+	
 	projectile_shooter.setup(
 		player,
 		bullet_sprite,
 		[
-			main_weakpoint,
-			left_weakpoint,
-			right_weakpoint
+			main_weakpoint_shape,
+			left_weakpoint_shape,
+			right_weakpoint_shape
 		],
-		[
-			main_fx,
-			left_fx,
-			right_fx
-		],
-		[
-			main_sfx,
-			left_sfx,
-			right_sfx
-		]
+		[main_fx,   left_fx,   right_fx],
+		[main_sfx,  left_sfx,  right_sfx]
 	)
 
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		return
+		
+	if is_knocked_back:
+		velocity = velocity.move_toward(Vector2.ZERO, knockback_friction * delta)
+		move_and_slide()
+		return
+		
 	if player == null:
 		_find_player()
 		return
+
+	if overall_health_bar.value <= 0 && is_dead == false:
+		is_dead = true
+		print("Dead")
+		queue_free()
 
 	_bob_timer        += delta
 	_action_timer     += delta
@@ -283,3 +325,79 @@ func set_phase(phase_index: int) -> void:
 	close_phase_duration  = min(6.0, 4.0  + phase_index * 0.8)
 	close_action_interval_min = max(0.3, 0.5 - phase_index * 0.1)
 	close_action_interval_max = max(0.5, 1.0 - phase_index * 0.2)
+	
+
+# ─────────────────────────────────────────────
+#  Damages
+# ─────────────────────────────────────────────
+
+func _update_overall_health_bar() -> void:
+	var total_hp := _left_hp + _right_hp
+	overall_health_bar.value = float(total_hp)
+
+func _on_left_damaged(amount: int, knockback: Vector2) -> void:
+	if is_dead:
+		return
+	_left_hp -= amount
+	_left_hp = max(_left_hp, 0)
+	left_health_bar.value = float(_left_hp)
+	_update_overall_health_bar()
+	_apply_knockback(knockback)
+	if _left_hp <= 0:
+		_on_left_destroyed()
+
+func _on_right_damaged(amount: int, knockback: Vector2) -> void:
+	if is_dead:
+		return
+	_right_hp -= amount
+	_right_hp = max(_right_hp, 0)
+	right_health_bar.value = float(_right_hp)
+	_update_overall_health_bar()
+	_apply_knockback(knockback)
+	if _right_hp <= 0:
+		_on_right_destroyed()
+
+func _apply_knockback(knockback: Vector2) -> void:
+	velocity = knockback * 0.2   # Boss is heavy
+	is_knocked_back = true
+	await get_tree().create_timer(0.1).timeout
+	is_knocked_back = false
+
+# ─────────────────────────────────────────────
+#  Weakpoint Destroyed
+# ─────────────────────────────────────────────
+
+func _on_main_destroyed() -> void:
+	print("Main weakpoint destroyed!")
+	main_weakpoint.set_deferred("monitoring", false)
+	# TODO: trigger next phase or death
+
+func _on_left_destroyed() -> void:
+	print("Left weakpoint destroyed!")
+	left_weakpoint.set_deferred("monitoring", false)
+	left_weakpoint.queue_free()
+
+func _on_right_destroyed() -> void:
+	print("Right weakpoint destroyed!")
+	right_weakpoint.set_deferred("monitoring", false)
+	right_weakpoint.queue_free()
+
+# ─────────────────────────────────────────────
+#  Hitbox Spawning (call this from your shooter
+#  or during specific attack actions)
+# ─────────────────────────────────────────────
+
+# ATTACK_DATA: [damage, offset_x, offset_y, width, height, lifetime, knockback]
+const ATTACK_DATA = [25, 0.0, 0.0, 80.0, 80.0, 0.15, 350.0]
+
+func _spawn_attack_hitbox(offset: Vector2 = Vector2.ZERO) -> void:
+	if hitbox_scene == null or is_dead:
+		return
+	var hitbox = hitbox_scene.instantiate()
+	hitbox.source = "enemy"
+	hitbox.damage = ATTACK_DATA[0]
+	hitbox.lifetime = ATTACK_DATA[5]
+	hitbox.knockback_force = ATTACK_DATA[6]
+	hitbox.global_position = global_position + offset
+	get_tree().current_scene.add_child(hitbox)
+	hitbox.set_shape_size(Vector2(ATTACK_DATA[3], ATTACK_DATA[4]))

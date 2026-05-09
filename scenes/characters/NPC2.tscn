@@ -173,12 +173,12 @@ autoplay = "default"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1516654779]
 shape = SubResource("CircleShape2D_lo76b")
 
-[node name="Label" type="Label" parent="." unique_id=1657665749]
-offset_right = 40.0
-offset_bottom = 23.0
-
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=269183746]
 position = Vector2(2, -57)
 scale = Vector2(1.8125, 1.875)
 sprite_frames = SubResource("SpriteFrames_2vuk6")
 autoplay = "default"
+
+[node name="Label" type="Label" parent="." unique_id=1657665749]
+offset_right = 40.0
+offset_bottom = 23.0

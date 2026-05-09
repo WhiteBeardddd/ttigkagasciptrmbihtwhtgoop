@@ -20,6 +20,10 @@ var combo_timer    := 0.0
 @onready var health_bar = $HUD/HealthBar
 
 func _ready() -> void:
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7aa13764d7842d12de0c645b043480ecf8990607
 	_is_dead = false
 	hp = GameManager.player_hp
 	anim.animation_finished.connect(_on_anim_finished)
@@ -37,7 +41,16 @@ func _on_stats_updated() -> void:
 	hp = GameManager.player_hp
 
 func _exit_tree() -> void:
+<<<<<<< HEAD
 	GameManager.player_hp = hp
+=======
+	# Only save HP if knight is alive — don't save 0 on death
+	if not _is_dead:
+		GameManager.player_hp = hp
+
+	anim.animation_finished.connect(_on_anim_finished)
+
+>>>>>>> 7aa13764d7842d12de0c645b043480ecf8990607
 
 func _on_anim_finished() -> void:
 	match anim.animation:
@@ -85,11 +98,21 @@ func _on_damaged(amount: int, knockback: Vector2) -> void:
 		return
 	take_hit(amount)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7aa13764d7842d12de0c645b043480ecf8990607
 func take_hit(amount: int = 10) -> void:
 	if _is_dead:
 		return
 	GameManager.take_damage(amount)
 	hp = GameManager.player_hp
+<<<<<<< HEAD
+=======
+
+# --- External API ---
+
+>>>>>>> 7aa13764d7842d12de0c645b043480ecf8990607
 
 	# Update health bar when taking damage
 	health_bar.health = hp

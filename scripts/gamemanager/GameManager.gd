@@ -6,7 +6,7 @@ var player_hp: int = 100
 var player_max_hp: int = 100
 var player_score: int = 0
 var inventory: Array = []
-var current_map: String = "res://scenes/maps/maps/Map1.tscn"
+var current_map: String = "res://scenes/maps/FinalMap/Map1.tscn"
 var spawn_point_name: String = "SpawnPoint"
 
 signal stats_updated

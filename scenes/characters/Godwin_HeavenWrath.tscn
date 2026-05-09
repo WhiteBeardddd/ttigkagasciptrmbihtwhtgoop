@@ -1,50 +1,50 @@
-[gd_scene format=3 uid="uid://dqmu5j1m58s4x"]
+[gd_scene format=3 uid="uid://spx6evpma38e"]
 
-[ext_resource type="Script" uid="uid://epv7yumnpcp7" path="res://scripts/NPC/World_Message.gd" id="1_us420"]
-[ext_resource type="Texture2D" uid="uid://dbvcpi6cau1jb" path="res://assets/Sprites/IDLE.png" id="2_dawek"]
-[ext_resource type="Texture2D" uid="uid://bpsjpdsp010vo" path="res://assets/WorldMessenger/spritesheet (4).png" id="3_plrkk"]
+[ext_resource type="Script" uid="uid://epv7yumnpcp7" path="res://scripts/NPC/World_Message.gd" id="1_nrxx4"]
+[ext_resource type="Texture2D" uid="uid://dbvcpi6cau1jb" path="res://assets/Sprites/IDLE.png" id="2_61jra"]
+[ext_resource type="Texture2D" uid="uid://bpsjpdsp010vo" path="res://assets/WorldMessenger/spritesheet (4).png" id="3_mbkuj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dawek"]
 radius = 73.061615
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_plrkk"]
-atlas = ExtResource("2_dawek")
+atlas = ExtResource("2_61jra")
 region = Rect2(0, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hk8lk"]
-atlas = ExtResource("2_dawek")
+atlas = ExtResource("2_61jra")
 region = Rect2(96, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g12ck"]
-atlas = ExtResource("2_dawek")
+atlas = ExtResource("2_61jra")
 region = Rect2(192, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3alij"]
-atlas = ExtResource("2_dawek")
+atlas = ExtResource("2_61jra")
 region = Rect2(288, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pp0hu"]
-atlas = ExtResource("2_dawek")
+atlas = ExtResource("2_61jra")
 region = Rect2(384, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eq82q"]
-atlas = ExtResource("2_dawek")
+atlas = ExtResource("2_61jra")
 region = Rect2(480, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ej70a"]
-atlas = ExtResource("2_dawek")
+atlas = ExtResource("2_61jra")
 region = Rect2(576, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gnba4"]
-atlas = ExtResource("2_dawek")
+atlas = ExtResource("2_61jra")
 region = Rect2(672, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_twrnu"]
-atlas = ExtResource("2_dawek")
+atlas = ExtResource("2_61jra")
 region = Rect2(768, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xkhuu"]
-atlas = ExtResource("2_dawek")
+atlas = ExtResource("2_61jra")
 region = Rect2(864, 0, 96, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_twrnu"]
@@ -86,39 +86,39 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8brmn"]
-atlas = ExtResource("3_plrkk")
+atlas = ExtResource("3_mbkuj")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fykeh"]
-atlas = ExtResource("3_plrkk")
+atlas = ExtResource("3_mbkuj")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sta41"]
-atlas = ExtResource("3_plrkk")
+atlas = ExtResource("3_mbkuj")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pp8ke"]
-atlas = ExtResource("3_plrkk")
+atlas = ExtResource("3_mbkuj")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gr6fa"]
-atlas = ExtResource("3_plrkk")
+atlas = ExtResource("3_mbkuj")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tb4w8"]
-atlas = ExtResource("3_plrkk")
+atlas = ExtResource("3_mbkuj")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tgffw"]
-atlas = ExtResource("3_plrkk")
+atlas = ExtResource("3_mbkuj")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iyg4r"]
-atlas = ExtResource("3_plrkk")
+atlas = ExtResource("3_mbkuj")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_22kd6"]
-atlas = ExtResource("3_plrkk")
+atlas = ExtResource("3_mbkuj")
 region = Rect2(256, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xkhuu"]
@@ -157,13 +157,14 @@ animations = [{
 }]
 
 [node name="Area2D" type="Area2D" unique_id=234447260]
-script = ExtResource("1_us420")
+script = ExtResource("1_nrxx4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1475543765]
 position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_dawek")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=979266430]
+modulate = Color(0.37, 0, 0, 1)
 position = Vector2(-1, -7)
 scale = Vector2(1.6484376, 1.4147135)
 sprite_frames = SubResource("SpriteFrames_twrnu")

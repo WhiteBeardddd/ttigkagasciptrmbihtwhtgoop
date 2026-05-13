@@ -13716,3 +13716,10 @@ position = Vector2(-617, 115)
 [node name="PortalArea" parent="." unique_id=2061754388 instance=ExtResource("20_35aqg")]
 position = Vector2(3608, 143)
 target_map = "res://scenes/maps/FinalMap/Map3.tscn"
+
+[node name="LevelCamera" type="Camera2D" parent="." unique_id=748116009]
+zoom = Vector2(3.2, 3.2)
+limit_left = -963
+limit_top = -175
+limit_right = 3661
+limit_bottom = 225

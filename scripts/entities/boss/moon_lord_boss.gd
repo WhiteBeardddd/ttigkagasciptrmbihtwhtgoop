@@ -381,23 +381,3 @@ func _on_right_destroyed() -> void:
 	print("Right weakpoint destroyed!")
 	right_weakpoint.set_deferred("monitoring", false)
 	right_weakpoint.queue_free()
-
-# ─────────────────────────────────────────────
-#  Hitbox Spawning (call this from your shooter
-#  or during specific attack actions)
-# ─────────────────────────────────────────────
-
-# ATTACK_DATA: [damage, offset_x, offset_y, width, height, lifetime, knockback]
-const ATTACK_DATA = [25, 0.0, 0.0, 80.0, 80.0, 0.15, 350.0]
-
-func _spawn_attack_hitbox(offset: Vector2 = Vector2.ZERO) -> void:
-	if hitbox_scene == null or is_dead:
-		return
-	var hitbox = hitbox_scene.instantiate()
-	hitbox.source = "enemy"
-	hitbox.damage = ATTACK_DATA[0]
-	hitbox.lifetime = ATTACK_DATA[5]
-	hitbox.knockback_force = ATTACK_DATA[6]
-	hitbox.global_position = global_position + offset
-	get_tree().current_scene.add_child(hitbox)
-	hitbox.set_shape_size(Vector2(ATTACK_DATA[3], ATTACK_DATA[4]))

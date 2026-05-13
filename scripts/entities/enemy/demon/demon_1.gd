@@ -13,6 +13,8 @@ var hitbox_scene: PackedScene = preload("res://scenes/characters/Hitbox.tscn")
 @onready var health_bar = $HealthBar
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hurtbox: Area2D = $Hurtbox
+@onready var collision_1 = $CollisionShape2D
+@onready var collision_2 = $Hurtbox/CollisionShape2D
 
 var player: Node2D = null
 var is_attacking: bool = false
@@ -41,6 +43,7 @@ func _on_damaged(amount: int, knockback: Vector2) -> void:
 	health_bar.health = current_hp
 	velocity = knockback
 	is_knocked_back = true
+	_flash_damage()
 	await get_tree().create_timer(0.25).timeout
 	if is_dead:
 		return
@@ -51,6 +54,8 @@ func _on_damaged(amount: int, knockback: Vector2) -> void:
 func _die() -> void:
 	if is_dead:
 		return
+	collision_1.queue_free()
+	collision_2.queue_free()
 	is_dead = true
 	if animated_sprite.animation_finished.is_connected(_on_animation_finished):
 		animated_sprite.animation_finished.disconnect(_on_animation_finished)
@@ -144,3 +149,8 @@ func _on_animation_finished() -> void:
 			if is_dead:
 				return
 			can_attack = true
+
+func _flash_damage() -> void:
+	var tween := create_tween()
+	tween.tween_property(self, "modulate", Color(1.5, 0.3, 0.3), 0.05)
+	tween.tween_property(self, "modulate", Color.WHITE,           0.15)

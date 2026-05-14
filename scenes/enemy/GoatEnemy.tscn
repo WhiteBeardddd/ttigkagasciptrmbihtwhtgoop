@@ -204,7 +204,7 @@ height = 58.0
 height = 62.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qmw8e"]
-radius = 258.9247
+radius = 470.00958
 
 [node name="GoatMan" type="CharacterBody2D" unique_id=861656516 groups=["enemy"]]
 script = ExtResource("1_qmw8e")

@@ -18448,31 +18448,25 @@ tile_set = SubResource("TileSet_efm78")
 tile_set = SubResource("TileSet_xtb0b")
 
 [node name="Demon" parent="Node2D" unique_id=861656516 instance=ExtResource("20_ttw15")]
-position = Vector2(411, 116)
+position = Vector2(572, -197)
 
 [node name="Demon2" parent="Node2D" unique_id=2101887910 instance=ExtResource("20_ttw15")]
-position = Vector2(772, -411)
+position = Vector2(1511, -183)
 
 [node name="Demon3" parent="Node2D" unique_id=1048743453 instance=ExtResource("20_ttw15")]
-position = Vector2(1291, -333)
-
-[node name="Demon4" parent="Node2D" unique_id=1083965098 instance=ExtResource("20_ttw15")]
-position = Vector2(2375, -682)
+position = Vector2(1829, -189)
 
 [node name="Demon5" parent="Node2D" unique_id=1638832476 instance=ExtResource("20_ttw15")]
-position = Vector2(3292, -373)
-
-[node name="Demon6" parent="Node2D" unique_id=168102264 instance=ExtResource("20_ttw15")]
-position = Vector2(4344, -456)
-
-[node name="Demon7" parent="Node2D" unique_id=645833989 instance=ExtResource("20_ttw15")]
-position = Vector2(4295, -332)
-
-[node name="Demon8" parent="Node2D" unique_id=1708461543 instance=ExtResource("20_ttw15")]
-position = Vector2(4170, -514)
+position = Vector2(1658, -90)
 
 [node name="Bat" parent="Node2D" unique_id=1769582146 instance=ExtResource("20_lmbri")]
-position = Vector2(-465, 135)
+position = Vector2(-67, 135)
+
+[node name="Bat2" parent="Node2D" unique_id=1211494591 instance=ExtResource("20_lmbri")]
+position = Vector2(612, 1)
+
+[node name="Bat3" parent="Node2D" unique_id=2023979413 instance=ExtResource("20_lmbri")]
+position = Vector2(968, 128)
 
 [node name="SpawnPoint" type="Node2D" parent="." unique_id=1040207293]
 position = Vector2(-617, 115)

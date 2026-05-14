@@ -1,7 +1,5 @@
 extends Node
-
 @onready var text_box_scene = preload("res://scenes/gamebehavior/Dialogue.tscn")
-
 var dialog_lines: Array[String] = []
 var current_line_index: int = 0
 var text_box: MarginContainer
@@ -33,17 +31,18 @@ func _on_txt_box_finished_displaying() -> void:
 	can_advance_line = true
 
 func _unhandled_input(event: InputEvent) -> void:
-	if (
-		event.is_action_pressed("advance_dialog") and
-		is_dialog_active and
-		can_advance_line
-	):
-		text_box.queue_free()
-		current_line_index += 1
-		
-		if current_line_index >= dialog_lines.size():
-			is_dialog_active = false
-			current_line_index = 0
-			return
-		
-		_show_text_box()
+	if not is_dialog_active:
+		return
+	if event.is_action_pressed("advance_dialog"):
+		if not can_advance_line:
+			text_box.skip_to_end()
+		else:
+			text_box.queue_free()
+			current_line_index += 1
+
+			if current_line_index >= dialog_lines.size():
+				is_dialog_active = false
+				current_line_index = 0
+				return
+
+			_show_text_box()

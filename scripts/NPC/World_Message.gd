@@ -22,7 +22,7 @@ func _on_body_entered(body: Node2D) -> void:
 			DialogManager.start_dialog(spawn_position, lines, npc_name)
 
 			# Wait for dialog to finish
-			#await wait_for_dialog_end()
+			await wait_for_dialog_end()
 
 			# Only spawn in Map7
 			if get_tree().current_scene.name == "Map7":
@@ -34,9 +34,9 @@ func _on_body_exited(body: Node2D) -> void:
 	if body.name == "knight":
 		prompt_label.hide()
 #
-#func wait_for_dialog_end() -> void:
-	##while DialogManager.is_dialog_active:
-	#await get_tree().process_frame
+func wait_for_dialog_end() -> void:
+	while DialogManager.is_dialog_active:
+		await get_tree().process_frame
 
 func spawn_boss() -> void:
 	var boss = final_boss.instantiate()

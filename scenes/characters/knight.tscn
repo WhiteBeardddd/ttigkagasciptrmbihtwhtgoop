@@ -42,6 +42,8 @@
 [ext_resource type="PackedScene" uid="uid://dwdbdkcfkfdwj" path="res://scenes/characters/Hitbox.tscn" id="40_uwkbq"]
 [ext_resource type="Script" uid="uid://bigep6cow87an" path="res://scripts/entities/enemy/demon/Hurtbox.gd" id="41_k2uuq"]
 [ext_resource type="PackedScene" uid="uid://daabhb8sxnutt" path="res://scenes/ui/knight_health_bar.tscn" id="42_7ieks"]
+[ext_resource type="FontFile" uid="uid://clfgbwraji6xo" path="res://assets/brackeys_assets/fonts/PixelOperator8-Bold.ttf" id="42_d3qap"]
+[ext_resource type="FontFile" uid="uid://dh2t6adlgfpj0" path="res://assets/brackeys_assets/fonts/PixelOperator8.ttf" id="44_gcc6j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f6vmv"]
 atlas = ExtResource("1_6jeeq")
@@ -857,6 +859,16 @@ height = 36.0
 radius = 11.0
 height = 44.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pdaio"]
+bg_color = Color(6.158474, 6.158474, 6.158474, 1)
+corner_radius_top_left = 17
+corner_radius_top_right = 17
+corner_radius_bottom_right = 17
+corner_radius_bottom_left = 17
+corner_detail = 16
+shadow_size = 9
+shadow_offset = Vector2(3, 3)
+
 [node name="knight" type="CharacterBody2D" unique_id=124575242 groups=["player"]]
 script = ExtResource("1_jfp34")
 
@@ -944,6 +956,181 @@ shape = SubResource("CapsuleShape2D_uwkbq")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1299501640]
 
+[node name="Username" type="Label" parent="HUD" unique_id=565473932]
+offset_left = 29.0
+offset_top = 10.0
+offset_right = 253.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("42_d3qap")
+theme_override_font_sizes/font_size = 30
+text = "Charles"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="HealthBar" parent="HUD" unique_id=1065770286 instance=ExtResource("42_7ieks")]
+offset_left = 43.0
+offset_top = 64.0
+offset_right = 698.0
+offset_bottom = 95.0
+
+[node name="LifeValue" type="Label" parent="HUD" unique_id=1230160834]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -414.0
+offset_top = 32.0
+offset_right = -190.0
+offset_bottom = 62.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("42_d3qap")
+theme_override_font_sizes/font_size = 16
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LifeLabel" type="Label" parent="HUD" unique_id=1720077371]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -473.0
+offset_top = 30.0
+offset_right = -249.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("42_d3qap")
+theme_override_font_sizes/font_size = 16
+text = "Lives:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverPanel" type="PanelContainer" parent="HUD" unique_id=808417660]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/GameOverPanel" unique_id=1754351773]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 15
+
+[node name="GameOver" type="Label" parent="HUD/GameOverPanel/VBoxContainer" unique_id=478706287]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("42_d3qap")
+theme_override_font_sizes/font_size = 40
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MapLabel" type="Label" parent="HUD/GameOverPanel/VBoxContainer" unique_id=250362144]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("44_gcc6j")
+theme_override_font_sizes/font_size = 25
+text = "Map 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnMainMenu" type="Button" parent="HUD/GameOverPanel/VBoxContainer" unique_id=1328356413]
+custom_minimum_size = Vector2(320, 55)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.040052935, 0.040052935, 0.040052935, 1)
+theme_override_fonts/font = ExtResource("44_gcc6j")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_pdaio")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pdaio")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pdaio")
+text = "Main Menu"
+
+[node name="BtnQuit" type="Button" parent="HUD/GameOverPanel/VBoxContainer" unique_id=1320596907]
+custom_minimum_size = Vector2(320, 55)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.040052935, 0.040052935, 0.040052935, 1)
+theme_override_fonts/font = ExtResource("44_gcc6j")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_pdaio")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pdaio")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pdaio")
+text = "Quit Game"
+
+[node name="PausePanel" type="PanelContainer" parent="HUD" unique_id=1015997407]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/PausePanel" unique_id=1782760713]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 15
+
+[node name="Paused" type="Label" parent="HUD/PausePanel/VBoxContainer" unique_id=65119638]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("42_d3qap")
+theme_override_font_sizes/font_size = 40
+text = "Game Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnSave" type="Button" parent="HUD/PausePanel/VBoxContainer" unique_id=1818902380]
+custom_minimum_size = Vector2(320, 55)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.040052935, 0.040052935, 0.040052935, 1)
+theme_override_fonts/font = ExtResource("44_gcc6j")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_pdaio")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pdaio")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pdaio")
+text = "Save
+"
+
+[node name="BtnResume" type="Button" parent="HUD/PausePanel/VBoxContainer" unique_id=348133746]
+custom_minimum_size = Vector2(320, 55)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.040052935, 0.040052935, 0.040052935, 1)
+theme_override_fonts/font = ExtResource("44_gcc6j")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_pdaio")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pdaio")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pdaio")
+text = "Resume"
+
+[node name="BtnQuit" type="Button" parent="HUD/PausePanel/VBoxContainer" unique_id=1207868765]
+custom_minimum_size = Vector2(320, 55)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.040052935, 0.040052935, 0.040052935, 1)
+theme_override_fonts/font = ExtResource("44_gcc6j")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_pdaio")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pdaio")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pdaio")
+text = "Main Menu"
 
 [connection signal="ready" from="." to="." method="_on_ready"]

@@ -18,6 +18,14 @@ corner_detail = 16
 shadow_size = 9
 shadow_offset = Vector2(3, 3)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m1kxf"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 17
+corner_radius_top_right = 17
+corner_radius_bottom_right = 17
+corner_radius_bottom_left = 17
+corner_detail = 16
+
 [node name="MainMenu" type="Control" unique_id=742694915]
 layout_mode = 3
 anchors_preset = 15
@@ -35,54 +43,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_u8vn4")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1539660918]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -71.0
-offset_right = 258.0
-offset_bottom = 164.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 17
-
-[node name="start_btn" type="Button" parent="VBoxContainer" unique_id=218736261]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(0.040052935, 0.040052935, 0.040052935, 1)
-theme_override_fonts/font = ExtResource("3_uhagc")
-theme_override_font_sizes/font_size = 21
-theme_override_styles/normal = SubResource("StyleBoxFlat_pm2xe")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_pm2xe")
-theme_override_styles/hover = SubResource("StyleBoxFlat_pm2xe")
-text = "Start Game"
-
-[node name="settings_btn" type="Button" parent="VBoxContainer" unique_id=784863860]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(0.040052935, 0.040052935, 0.040052935, 1)
-theme_override_fonts/font = ExtResource("3_uhagc")
-theme_override_font_sizes/font_size = 21
-theme_override_styles/normal = SubResource("StyleBoxFlat_pm2xe")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_pm2xe")
-theme_override_styles/hover = SubResource("StyleBoxFlat_pm2xe")
-text = "Options"
-
-[node name="exit_btn" type="Button" parent="VBoxContainer" unique_id=161116055]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(0.040052935, 0.040052935, 0.040052935, 1)
-theme_override_fonts/font = ExtResource("3_uhagc")
-theme_override_font_sizes/font_size = 21
-theme_override_styles/normal = SubResource("StyleBoxFlat_pm2xe")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_pm2xe")
-theme_override_styles/hover = SubResource("StyleBoxFlat_pm2xe")
-text = "Quit"
 
 [node name="Label" type="Label" parent="." unique_id=46692804]
 layout_mode = 1
@@ -103,6 +63,194 @@ Work Hard to Get Out of Purgatory"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="VBoxContainer/start_btn" to="." method="_on_start_btn_pressed"]
-[connection signal="pressed" from="VBoxContainer/settings_btn" to="." method="_on_settings_btn_pressed"]
-[connection signal="pressed" from="VBoxContainer/exit_btn" to="." method="_on_exit_btn_pressed"]
+[node name="MainPanel" type="VBoxContainer" parent="." unique_id=1539660918]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -71.0
+offset_right = 258.0
+offset_bottom = 164.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 17
+
+[node name="BtnPlay" type="Button" parent="MainPanel" unique_id=218736261]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.040052935, 0.040052935, 0.040052935, 1)
+theme_override_fonts/font = ExtResource("3_uhagc")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_pm2xe")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pm2xe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pm2xe")
+text = "Start Game"
+
+[node name="BtnLeaderboard" type="Button" parent="MainPanel" unique_id=784863860]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.040052935, 0.040052935, 0.040052935, 1)
+theme_override_fonts/font = ExtResource("3_uhagc")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_pm2xe")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pm2xe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pm2xe")
+text = "Leaderboards"
+
+[node name="BtnQuit" type="Button" parent="MainPanel" unique_id=161116055]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.040052935, 0.040052935, 0.040052935, 1)
+theme_override_fonts/font = ExtResource("3_uhagc")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_pm2xe")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pm2xe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pm2xe")
+text = "Quit"
+
+[node name="PlayPanel" type="VBoxContainer" parent="." unique_id=1085354906]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -243.5
+offset_top = -119.5
+offset_right = 243.5
+offset_bottom = 119.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+
+[node name="BtnNewUser" type="Button" parent="PlayPanel" unique_id=629546174]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.040052935, 0.040052935, 0.040052935, 1)
+theme_override_fonts/font = ExtResource("3_uhagc")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_pm2xe")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pm2xe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pm2xe")
+text = "New User"
+
+[node name="BtnContinue" type="Button" parent="PlayPanel" unique_id=1689881044]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.040052935, 0.040052935, 0.040052935, 1)
+theme_override_fonts/font = ExtResource("3_uhagc")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_pm2xe")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pm2xe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pm2xe")
+text = "Continue"
+
+[node name="ProfileList" type="ItemList" parent="PlayPanel" unique_id=1264989582]
+custom_minimum_size = Vector2(400, 300)
+layout_mode = 2
+
+[node name="BtnBack" type="Button" parent="PlayPanel" unique_id=423271836]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.040052935, 0.040052935, 0.040052935, 1)
+theme_override_fonts/font = ExtResource("3_uhagc")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_pm2xe")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pm2xe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pm2xe")
+text = "Back
+"
+
+[node name="LeaderboardPanel" type="VBoxContainer" parent="." unique_id=1517997427]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -258.34375
+offset_top = -163.0
+offset_right = 258.34375
+offset_bottom = 217.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeaderboardList" type="ItemList" parent="LeaderboardPanel" unique_id=231458158]
+custom_minimum_size = Vector2(400, 300)
+layout_mode = 2
+select_mode = 1
+
+[node name="BtnBack" type="Button" parent="LeaderboardPanel" unique_id=628323328]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.040052935, 0.040052935, 0.040052935, 1)
+theme_override_fonts/font = ExtResource("3_uhagc")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_pm2xe")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pm2xe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pm2xe")
+text = "Back
+"
+
+[node name="UsernameDialog" type="PanelContainer" parent="." unique_id=722627915]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -274.0
+offset_top = -74.0
+offset_right = 268.0
+offset_bottom = 162.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UsernameDialog" unique_id=834709866]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="UsernameInput" type="LineEdit" parent="UsernameDialog/VBoxContainer" unique_id=2074559095]
+custom_minimum_size = Vector2(280, 70)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_uhagc")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_m1kxf")
+placeholder_text = "  Input Name"
+max_length = 30
+backspace_deletes_composite_character_enabled = true
+clear_button_enabled = true
+
+[node name="BtnConfirm" type="Button" parent="UsernameDialog/VBoxContainer" unique_id=282426241]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.040052935, 0.040052935, 0.040052935, 1)
+theme_override_fonts/font = ExtResource("3_uhagc")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_pm2xe")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pm2xe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pm2xe")
+text = "Confirm"
+
+[node name="BtnCancel" type="Button" parent="UsernameDialog/VBoxContainer" unique_id=1620590164]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.040052935, 0.040052935, 0.040052935, 1)
+theme_override_fonts/font = ExtResource("3_uhagc")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_pm2xe")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pm2xe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pm2xe")
+text = "Cancel
+"
+
+[connection signal="pressed" from="MainPanel/BtnPlay" to="." method="_on_start_btn_pressed"]
+[connection signal="pressed" from="MainPanel/BtnLeaderboard" to="." method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="MainPanel/BtnQuit" to="." method="_on_exit_btn_pressed"]

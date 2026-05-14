@@ -24,7 +24,7 @@ var is_knocked_back: bool = false
 var is_dead: bool = false
 var _hitbox_spawned: bool = false
 
-const ATTACK_DATA = [10, 32, 17, 50, 40, 0.12, 250.0]
+const ATTACK_DATA = [10000, 32, 17, 50, 40, 0.12, 250.0]
 
 enum State { CHASE, ATTACK }
 var state = State.CHASE
@@ -102,8 +102,10 @@ func _handle_state(_delta: float) -> void:
 		State.CHASE:
 			var direction := (player.global_position - global_position).normalized()
 			velocity = direction * move_speed
+			# Flip only the sprite
 			animated_sprite.flip_h = player.global_position.x > global_position.x
-			health_bar.scale.x = -1.0 if animated_sprite.flip_h else 1.0
+			# Keep health bar normal
+			health_bar.scale.x = 1.0
 			if animated_sprite.animation != "walk":
 				animated_sprite.play("walk")
 		State.ATTACK:
@@ -112,7 +114,10 @@ func _handle_state(_delta: float) -> void:
 				is_attacking = true
 				can_attack = false
 				_hitbox_spawned = false
+				# Flip only the sprite
 				animated_sprite.flip_h = player.global_position.x > global_position.x
+				# Keep health bar normal
+				health_bar.scale.x = 1.0
 				animated_sprite.play("attack")
 	move_and_slide()
 

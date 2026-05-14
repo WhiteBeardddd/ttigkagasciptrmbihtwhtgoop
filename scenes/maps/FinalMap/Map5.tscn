@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://bcmi68o32b28t"]
 
-[ext_resource type="Script" uid="uid://c7dxix3o6pm3g" path="res://scripts/gamemanager/worldbehavior/map_base.gd" id="1_he2mv"]
+[ext_resource type="Script" path="res://scripts/gamemanager/worldbehavior/map_base.gd" id="1_he2mv"]
 [ext_resource type="Texture2D" uid="uid://c7qmdgxpbu0sw" path="res://assets/CaveParallax/7.png" id="2_eb00l"]
 [ext_resource type="Texture2D" uid="uid://bv0gnawasi50n" path="res://assets/CaveParallax/6.png" id="3_ioqcn"]
 [ext_resource type="Texture2D" uid="uid://djltwfruyqqx2" path="res://assets/CaveParallax/5.png" id="4_86yfu"]
@@ -16601,6 +16601,15 @@ tile_set = SubResource("TileSet_j264r")
 
 [node name="Demon" parent="Node2D" unique_id=861656516 instance=ExtResource("19_khwas")]
 position = Vector2(411, 116)
+
+[node name="LevelCamera" type="Camera2D" parent="." unique_id=495744455]
+position = Vector2(-1798.9999, -204)
+scale = Vector2(2.2291665, 1.9212966)
+zoom = Vector2(3.2, 3.2)
+limit_left = -963
+limit_top = -175
+limit_right = 3661
+limit_bottom = 225
 
 [node name="SpawnPoint" type="Node2D" parent="." unique_id=1040207293]
 position = Vector2(-617, 115)

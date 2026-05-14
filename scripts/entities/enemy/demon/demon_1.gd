@@ -24,7 +24,7 @@ var is_knocked_back: bool = false
 var is_dead: bool = false
 var _hitbox_spawned: bool = false
 
-const ATTACK_DATA = [10000, 32, 17, 50, 40, 0.12, 250.0]
+const ATTACK_DATA = [1, 32, 17, 50, 40, 0.12, 250.0]
 
 enum State { CHASE, ATTACK }
 var state = State.CHASE

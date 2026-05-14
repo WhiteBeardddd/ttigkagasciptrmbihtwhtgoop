@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d4d7gx5eygaif" path="res://assets/FreeKnight_v1/Colour1/Outline/120x80_PNGSheets/_Attack.png" id="1_6jeeq"]
 [ext_resource type="Script" uid="uid://bwha1b0au7lv8" path="res://scripts/player/Knight.gd" id="1_jfp34"]
+[ext_resource type="AudioStream" uid="uid://dyg8r4cayvwwe" path="res://Music/AttackSound/Fast,_metal_sword_sw_#4-1778317212505.wav" id="2_d3qap"]
 [ext_resource type="Texture2D" uid="uid://e7ms3grnrj8g" path="res://assets/FreeKnight_v1/Colour1/Outline/120x80_PNGSheets/_Attack2.png" id="2_jfp34"]
 [ext_resource type="Texture2D" uid="uid://cwvacys0664ee" path="res://assets/FreeKnight_v1/Colour1/Outline/120x80_PNGSheets/_AttackCombo2hit.png" id="3_iu4sc"]
 [ext_resource type="Texture2D" uid="uid://khtv0ltf67uq" path="res://assets/FreeKnight_v1/Colour1/Outline/120x80_PNGSheets/_Crouch.png" id="4_owq3y"]
@@ -21,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://cydpviv5hhbet" path="res://assets/FreeKnight_v1/Colour1/Outline/120x80_PNGSheets/_WallHang.png" id="18_rylge"]
 [ext_resource type="Texture2D" uid="uid://cplj2tf1j4c51" path="res://assets/FreeKnight_v1/Colour1/Outline/120x80_PNGSheets/_WallSlide.png" id="19_kcklm"]
 [ext_resource type="Script" uid="uid://bo128wopbmrga" path="res://scripts/StateMachine/StateMachine.gd" id="21_f6vmv"]
+[ext_resource type="AudioStream" uid="uid://djsrqfb4m8ubi" path="res://Music/AttackSound/finalswingnajud.wav" id="22_5wc8c"]
 [ext_resource type="Script" uid="uid://dbpda0oy6404r" path="res://scripts/StateMachine/states/WallHang.gd" id="22_d6hf5"]
 [ext_resource type="Script" uid="uid://c3fsv2y47ddna" path="res://scripts/StateMachine/states/WallClimb.gd" id="23_uwkbq"]
 [ext_resource type="Script" uid="uid://cqrtosbmi3tc1" path="res://scripts/StateMachine/states/Slide.gd" id="24_k2uuq"]
@@ -879,6 +881,12 @@ animation = &"death"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1130195283]
 position = Vector2(-4, 21)
 shape = SubResource("CapsuleShape2D_np6au")
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="." unique_id=225597586]
+stream = ExtResource("2_d3qap")
+
+[node name="AttackSound1" type="AudioStreamPlayer2D" parent="." unique_id=733043004]
+stream = ExtResource("22_5wc8c")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1411830590]
 script = ExtResource("21_f6vmv")

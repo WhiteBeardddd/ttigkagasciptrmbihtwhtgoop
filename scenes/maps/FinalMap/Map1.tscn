@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://dk6t1nrwi5sl2" path="res://assets/PixelPlatform_Assets/Anim/torchB3.png" id="23_8d884"]
 [ext_resource type="Texture2D" uid="uid://d2mvw1hiwf7tx" path="res://assets/PixelPlatform_Assets/Anim/torchB4.png" id="24_a4qv6"]
 [ext_resource type="PackedScene" uid="uid://dysloytv7f22o" path="res://scenes/enemy/Demon1.tscn" id="25_8n34c"]
+[ext_resource type="AudioStream" uid="uid://cht76ox5lping" path="res://Music/Map1/Midnight_Clearing.mp3" id="27_ebq24"]
 [ext_resource type="PackedScene" uid="uid://blxm3bkbgqn7x" path="res://scenes/characters/NPC2.tscn" id="27_toims"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x3ym4"]
@@ -16328,6 +16329,11 @@ position = Vector2(5058, 67)
 sprite_frames = SubResource("SpriteFrames_m37pk")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=811817643]
+stream = ExtResource("27_ebq24")
+volume_db = -18.958
+autoplay = true
 
 [connection signal="body_entered" from="Node2D/Area2D5" to="Node2D/Area2D5" method="_on_body_entered"]
 [connection signal="body_exited" from="Node2D/Area2D5" to="Node2D/Area2D5" method="_on_body_exited"]

@@ -297,7 +297,10 @@ height = 34.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rk35g"]
 height = 44.0
 
-[node name="Demon" type="CharacterBody2D" unique_id=861656516 groups=["enemy"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_8fniq"]
+radius = 501.06387
+
+[node name="Bat" type="CharacterBody2D" unique_id=861656516 groups=["enemy"]]
 script = ExtResource("1_8fniq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2058371199]
@@ -322,3 +325,9 @@ offset_left = -9.0
 offset_top = -30.0
 offset_right = 9.0
 offset_bottom = -27.0
+
+[node name="AggroZone" type="Area2D" parent="." unique_id=1408385064]
+position = Vector2(-1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroZone" unique_id=1687040755]
+shape = SubResource("CircleShape2D_8fniq")

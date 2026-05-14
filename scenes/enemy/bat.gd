@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var attack_range: float = 20.0
 @export var move_speed: float = 90.0
 @export var attack_cooldown: float = 2.0
-@export var max_hp: int = 30
+@export var max_hp: int = 18
 @export var attack_damage: int = 10
 @export var knockback_force: float = 200.0
 @export var knockback_friction: float = 800.0
@@ -13,6 +13,7 @@ var hitbox_scene: PackedScene = preload("res://scenes/characters/Hitbox.tscn")
 @onready var health_bar = $HealthBar
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hurtbox: Area2D = $Hurtbox
+@onready var aggro_zone: Area2D = $AggroZone
 @onready var collision_1 = $CollisionShape2D
 @onready var collision_2 = $Hurtbox/CollisionShape2D
 
@@ -22,12 +23,13 @@ var can_attack: bool = true
 var current_hp: int
 var is_knocked_back: bool = false
 var is_dead: bool = false
+var is_aggro: bool = false
 var _hitbox_spawned: bool = false
 
 const ATTACK_DATA = [1, 32, 17, 50, 40, 0.12, 250.0]
 
-enum State { CHASE, ATTACK }
-var state = State.CHASE
+enum State { IDLE, CHASE, ATTACK }
+var state = State.IDLE
 
 func _ready() -> void:
 	current_hp = max_hp
@@ -35,10 +37,24 @@ func _ready() -> void:
 	hurtbox.damaged.connect(_on_damaged)
 	animated_sprite.animation_finished.connect(_on_animation_finished)
 	animated_sprite.frame_changed.connect(_on_frame_changed)
+	aggro_zone.body_entered.connect(_on_aggro_zone_body_entered)
+	aggro_zone.body_exited.connect(_on_aggro_zone_body_exited)
+
+func _on_aggro_zone_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		player = body
+		is_aggro = true
+
+func _on_aggro_zone_body_exited(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		is_aggro = false
 
 func _on_damaged(amount: int, knockback: Vector2) -> void:
 	if is_dead:
 		return
+	is_aggro = true
+	if not is_instance_valid(player):
+		player = get_tree().get_first_node_in_group("player")
 	current_hp -= amount
 	health_bar.health = current_hp
 	velocity = knockback
@@ -77,6 +93,15 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.move_toward(Vector2.ZERO, knockback_friction * delta)
 		move_and_slide()
 		return
+
+	if not is_aggro:
+		velocity = Vector2.ZERO
+		if not is_attacking:
+			if animated_sprite.animation != "idle" or not animated_sprite.is_playing():
+				animated_sprite.play("idle")
+		move_and_slide()
+		return
+
 	if not is_instance_valid(player):
 		player = get_tree().get_first_node_in_group("player")
 	if not is_instance_valid(player):
@@ -85,6 +110,7 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.play("idle")
 		move_and_slide()
 		return
+
 	var distance := global_position.distance_to(player.global_position)
 	_update_state(distance)
 	_handle_state(delta)
@@ -102,8 +128,6 @@ func _handle_state(_delta: float) -> void:
 		State.CHASE:
 			var direction := (player.global_position - global_position).normalized()
 			var distance: float = global_position.distance_to(player.global_position)
-
-			# Stop and idle if within attack range but waiting on cooldown
 			if distance <= attack_range and not can_attack:
 				velocity = Vector2.ZERO
 				if animated_sprite.animation != "idle" or not animated_sprite.is_playing():
@@ -113,7 +137,6 @@ func _handle_state(_delta: float) -> void:
 				animated_sprite.flip_h = player.global_position.x > global_position.x
 				if animated_sprite.animation != "walk" or not animated_sprite.is_playing():
 					animated_sprite.play("walk")
-
 			health_bar.scale.x = 1.0
 
 		State.ATTACK:

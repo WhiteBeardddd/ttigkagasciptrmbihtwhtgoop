@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="dcism-suntukan"
-run/main_scene="uid://bcmi68o32b28t"
+run/main_scene="uid://c1fbxx41uua84"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 <<<<<<<HEADrun/main_scene="uid://dmvsypethwk8f"

@@ -20,12 +20,15 @@
 [ext_resource type="Texture2D" uid="uid://dww38k3lg4rqf" path="res://assets/map2/Legacy-Fantasy - High Forest 2.3/Assets/Props-Rocks.png" id="18_a1ljy"]
 [ext_resource type="PackedScene" uid="uid://dqmu5j1m58s4x" path="res://scenes/characters/World_Message.tscn" id="19_l4arn"]
 [ext_resource type="PackedScene" uid="uid://ckn1yu8ok75ey" path="res://scenes/maps/map-assets/portal_area.tscn" id="20_htrr7"]
+[ext_resource type="Script" uid="uid://dvr6c71s3rf8k" path="res://scenes/gamebehavior/deathzone.gd" id="20_toims"]
 [ext_resource type="Texture2D" uid="uid://dr1r78wvj6gk8" path="res://assets/PixelPlatform_Assets/Anim/torchB1.png" id="21_uinay"]
 [ext_resource type="Texture2D" uid="uid://dea5toicf0y0v" path="res://assets/PixelPlatform_Assets/Anim/torchB2.png" id="22_nwtb5"]
 [ext_resource type="Texture2D" uid="uid://dk6t1nrwi5sl2" path="res://assets/PixelPlatform_Assets/Anim/torchB3.png" id="23_8d884"]
 [ext_resource type="Texture2D" uid="uid://d2mvw1hiwf7tx" path="res://assets/PixelPlatform_Assets/Anim/torchB4.png" id="24_a4qv6"]
 [ext_resource type="AudioStream" uid="uid://cht76ox5lping" path="res://Music/Map1/Midnight_Clearing.mp3" id="27_ebq24"]
 [ext_resource type="PackedScene" uid="uid://blxm3bkbgqn7x" path="res://scenes/characters/NPC2.tscn" id="27_toims"]
+[ext_resource type="PackedScene" uid="uid://bhxn808l53431" path="res://scenes/enemy/Rat.tscn" id="28_luyvy"]
+[ext_resource type="PackedScene" uid="uid://doanxd74to6ls" path="res://scenes/enemy/Bat.tscn" id="29_jog03"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x3ym4"]
 texture = ExtResource("9_fc2oc")
@@ -16073,6 +16076,8 @@ texture = ExtResource("10_r35o3")
 sources/0 = SubResource("TileSetAtlasSource_efm78")
 sources/1 = SubResource("TileSetAtlasSource_iqxaf")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ebq24"]
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_m37pk"]
 animations = [{
 "frames": [{
@@ -16284,6 +16289,13 @@ priority = 1
 lines = Array[String](["Stay your step traveler. You walk upon the soil of the Forest of Pride", "a place where the trees grew so tall they tried to pierce the heavens", "Take this advice for free: in this wood, the moment you think you are master of it", "the roots will find a way to trip you", "Keep your eyes on the path and your ego in your pocket; we shall see if you have the mettle to make it to the clearing."])
 npc_name = "Grand Sabandage"
 
+[node name="Deathzone" type="Area2D" parent="Node2D" unique_id=1817821941]
+position = Vector2(1435, 297)
+script = ExtResource("20_toims")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Deathzone" unique_id=8612353]
+shape = SubResource("WorldBoundaryShape2D_ebq24")
+
 [node name="Area2D" parent="Node2D" unique_id=902552278 instance=ExtResource("27_toims")]
 position = Vector2(5097, 133)
 lines = Array[String](["Halt! There are violent beings ahead.", "Turn back know if you want to continue existing.", "A former knight? Very well I can see your confidence.", "[Left Mouse Click] to swing your sword."])
@@ -16294,7 +16306,7 @@ position = Vector2(5185, 154)
 target_map = "res://scenes/maps/FinalMap/Map2.tscn"
 
 [node name="SpawnPoint" type="Node2D" parent="." unique_id=1040207293]
-position = Vector2(-1808, 128)
+position = Vector2(-1750, 163)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=46643716]
 position = Vector2(4482, 64)
@@ -16318,6 +16330,27 @@ autoplay = "idle"
 stream = ExtResource("27_ebq24")
 volume_db = -18.958
 autoplay = true
+
+[node name="Rat" parent="." unique_id=861656516 instance=ExtResource("28_luyvy")]
+position = Vector2(-16, 167)
+
+[node name="Rat2" parent="." unique_id=788116782 instance=ExtResource("28_luyvy")]
+position = Vector2(421, 163)
+
+[node name="Rat3" parent="." unique_id=212113669 instance=ExtResource("28_luyvy")]
+position = Vector2(1192, 32)
+
+[node name="Rat4" parent="." unique_id=2025893398 instance=ExtResource("28_luyvy")]
+position = Vector2(1953, 127)
+
+[node name="Rat5" parent="." unique_id=1973193695 instance=ExtResource("28_luyvy")]
+position = Vector2(2759, 175)
+
+[node name="Rat6" parent="." unique_id=1488889206 instance=ExtResource("28_luyvy")]
+position = Vector2(4133, 149)
+
+[node name="Bat" parent="." unique_id=1589968960 instance=ExtResource("29_jog03")]
+position = Vector2(4375, 34)
 
 [connection signal="body_entered" from="Node2D/Area2D5" to="Node2D/Area2D5" method="_on_body_entered"]
 [connection signal="body_exited" from="Node2D/Area2D5" to="Node2D/Area2D5" method="_on_body_exited"]

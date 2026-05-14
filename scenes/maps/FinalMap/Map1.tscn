@@ -24,7 +24,6 @@
 [ext_resource type="Texture2D" uid="uid://dea5toicf0y0v" path="res://assets/PixelPlatform_Assets/Anim/torchB2.png" id="22_nwtb5"]
 [ext_resource type="Texture2D" uid="uid://dk6t1nrwi5sl2" path="res://assets/PixelPlatform_Assets/Anim/torchB3.png" id="23_8d884"]
 [ext_resource type="Texture2D" uid="uid://d2mvw1hiwf7tx" path="res://assets/PixelPlatform_Assets/Anim/torchB4.png" id="24_a4qv6"]
-[ext_resource type="PackedScene" uid="uid://dysloytv7f22o" path="res://scenes/enemy/Demon1.tscn" id="25_8n34c"]
 [ext_resource type="AudioStream" uid="uid://cht76ox5lping" path="res://Music/Map1/Midnight_Clearing.mp3" id="27_ebq24"]
 [ext_resource type="PackedScene" uid="uid://blxm3bkbgqn7x" path="res://scenes/characters/NPC2.tscn" id="27_toims"]
 
@@ -16270,40 +16269,25 @@ tile_set = SubResource("TileSet_xtb0b")
 [node name="Area2D5" parent="Node2D" unique_id=234447260 instance=ExtResource("19_l4arn")]
 position = Vector2(3721, 56)
 priority = 1
-lines = Array[String](["The path ahead leads to the Dungeon of Envy.", "This is where my journey ends with you.", "I pray good luck to you."])
+lines = Array[String](["The air has turned to copper and bile. You are leaving the Forest’s gold for the sickly green fires of Envy.", "Look at the tunnel mouth—another stands there waiting for someone of your 'reputation' to arrive.", "In the forest, people wanted to be you; where you’re going, they will simply want what is yours."])
 npc_name = "Grand Sabandage"
 
 [node name="Area2D4" parent="Node2D" unique_id=1408518501 instance=ExtResource("19_l4arn")]
 position = Vector2(1535, 157)
 priority = 1
-lines = Array[String](["We meet again.", "How can I be already here? I already told you, its a secret.", "Rather than asking me that question again, I believe its wiser for you to just accept it and move on.", "Run towards the cliff and climb.", "Ill again. catch up."])
+lines = Array[String](["Lighter on your feet than you look. Most who come through here are so weighed down by their own importance they can't even clear the first gap.", "Mind the holes in the stonework; this bridge was built for parades, but it wasn't maintained for survivors.", "Be careful—the wind through these gaps has a way of pushing the arrogant off-balance.", "Gravity doesn't care about your titles or your treasures, so keep your center of gravity low and your heart quiet."])
 npc_name = "Grand Sabandage"
 
 [node name="Area2D3" parent="Node2D" unique_id=1666502720 instance=ExtResource("19_l4arn")]
-position = Vector2(367, 154)
+position = Vector2(-704, 157)
 priority = 1
-lines = Array[String](["Hello again exile", "Mmm? How did i get here already?", "Hahaha.. Not telling.", "Anyways press [Space Bar] to jump.", "Hold [Space Bar] to climb walls.", "Ill again catch up to you good luck."])
+lines = Array[String](["Stay your step traveler. You walk upon the soil of the Forest of Pride", "a place where the trees grew so tall they tried to pierce the heavens", "Take this advice for free: in this wood, the moment you think you are master of it", "the roots will find a way to trip you", "Keep your eyes on the path and your ego in your pocket; we shall see if you have the mettle to make it to the clearing."])
 npc_name = "Grand Sabandage"
-
-[node name="Area2D2" parent="Node2D" unique_id=2083555149 instance=ExtResource("19_l4arn")]
-position = Vector2(-1483, 152)
-priority = 1
-lines = Array[String](["Welcome exile. Press [E] to Interact to NPC's", "Welcome to the Forest of Pride", "Press [A] to go left", "Press [D] to go right", "Now you've gotten the basics", "Go forward, Ill catchup"])
-npc_name = "Grand Vaincrest "
 
 [node name="Area2D" parent="Node2D" unique_id=902552278 instance=ExtResource("27_toims")]
 position = Vector2(5097, 133)
 lines = Array[String](["Halt! There are violent beings ahead.", "Turn back know if you want to continue existing.", "A former knight? Very well I can see your confidence.", "[Left Mouse Click] to swing your sword."])
 npc_name = "Patricacus Greenveil"
-
-[node name="Demon" parent="Node2D" unique_id=861656516 instance=ExtResource("25_8n34c")]
-position = Vector2(-1012, 117)
-
-[node name="Demon2" parent="Node2D" unique_id=764033768 instance=ExtResource("25_8n34c")]
-position = Vector2(-1634, 96)
-
-[node name="Demon3" parent="Node2D" unique_id=164146656 instance=ExtResource("25_8n34c")]
-position = Vector2(-1373, 33)
 
 [node name="PortalArea" parent="." unique_id=2061754388 instance=ExtResource("20_htrr7")]
 position = Vector2(5185, 154)
@@ -16341,6 +16325,4 @@ autoplay = true
 [connection signal="body_exited" from="Node2D/Area2D4" to="Node2D/Area2D4" method="_on_body_exited"]
 [connection signal="body_entered" from="Node2D/Area2D3" to="Node2D/Area2D3" method="_on_body_entered"]
 [connection signal="body_exited" from="Node2D/Area2D3" to="Node2D/Area2D3" method="_on_body_exited"]
-[connection signal="body_entered" from="Node2D/Area2D2" to="Node2D/Area2D2" method="_on_body_entered"]
-[connection signal="body_exited" from="Node2D/Area2D2" to="Node2D/Area2D2" method="_on_body_exited"]
 [connection signal="body_entered" from="Node2D/Area2D" to="Node2D/Area2D" method="_on_body_entered"]

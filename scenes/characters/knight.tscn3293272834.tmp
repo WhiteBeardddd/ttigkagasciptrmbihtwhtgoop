@@ -42,6 +42,7 @@
 [ext_resource type="Script" uid="uid://ds18nxkrj4pfh" path="res://scripts/StateMachine/states/Death.gd" id="38_1t857"]
 [ext_resource type="Script" uid="uid://bguqq3symyuh2" path="res://scripts/player/attack_controller.gd" id="39_d6hf5"]
 [ext_resource type="PackedScene" uid="uid://dwdbdkcfkfdwj" path="res://scenes/characters/Hitbox.tscn" id="40_uwkbq"]
+[ext_resource type="Script" uid="uid://ft2wx2yjh2d7" path="res://scripts/StateMachine/states/turn_around.gd" id="41_14e7x"]
 [ext_resource type="Script" uid="uid://bigep6cow87an" path="res://scripts/entities/enemy/demon/Hurtbox.gd" id="41_k2uuq"]
 [ext_resource type="PackedScene" uid="uid://daabhb8sxnutt" path="res://scenes/ui/knight_health_bar.tscn" id="42_7ieks"]
 [ext_resource type="FontFile" uid="uid://clfgbwraji6xo" path="res://assets/brackeys_assets/fonts/PixelOperator8-Bold.ttf" id="42_d3qap"]
@@ -943,6 +944,9 @@ script = ExtResource("37_vfh46")
 
 [node name="Death" type="Node" parent="StateMachine" unique_id=1069374221]
 script = ExtResource("38_1t857")
+
+[node name="TurnAround" type="Node" parent="StateMachine" unique_id=1653667281]
+script = ExtResource("41_14e7x")
 
 [node name="AttackController" type="Node2D" parent="." unique_id=1144844460]
 script = ExtResource("39_d6hf5")

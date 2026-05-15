@@ -29,6 +29,7 @@ func _on_body_entered(body: Node2D) -> void:
 				if not boss_spawned:
 					spawn_boss()
 					boss_spawned = true
+					queue_free()
 
 func _on_body_exited(body: Node2D) -> void:
 	if body.name == "knight":

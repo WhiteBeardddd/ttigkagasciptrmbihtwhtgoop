@@ -800,7 +800,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kytdn")
 }],
-"loop": false,
+"loop": true,
 "name": &"turn_around",
 "speed": 10.0
 }, {
@@ -876,9 +876,7 @@ script = ExtResource("1_jfp34")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=192615170]
 sprite_frames = SubResource("SpriteFrames_f6vmv")
-animation = &"turn_around"
-frame = 2
-frame_progress = 1.0
+animation = &"death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1130195283]
 position = Vector2(-4, 21)
@@ -987,32 +985,32 @@ offset_bottom = 95.0
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -485.0
-offset_top = 30.0
-offset_right = -261.0
-offset_bottom = 64.0
+offset_left = -414.0
+offset_top = 32.0
+offset_right = -190.0
+offset_bottom = 62.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("42_d3qap")
 theme_override_font_sizes/font_size = 16
 text = "3"
-horizontal_alignment = 2
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="LifeLabel" type="Label" parent="HUD" unique_id=1720077371]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -505.0
-offset_top = 29.0
-offset_right = -281.0
-offset_bottom = 63.0
+offset_left = -473.0
+offset_top = 30.0
+offset_right = -249.0
+offset_bottom = 64.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("42_d3qap")
 theme_override_font_sizes/font_size = 16
 text = "Lives:"
-horizontal_alignment = 2
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GameOverPanel" type="PanelContainer" parent="HUD" unique_id=808417660]

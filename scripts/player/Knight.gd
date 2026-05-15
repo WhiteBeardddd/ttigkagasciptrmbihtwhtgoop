@@ -3,10 +3,15 @@ class_name Knight extends CharacterBody2D
 var hp: int
 var _is_dead: bool = false
 
+var dash_cooldown_timer := 0.0
+var roll_cooldown_timer := 0.0
+const DASH_COOLDOWN := 1.5  # seconds
+const ROLL_COOLDOWN := 1.5  # seconds
+
 @export var speed:            float = 180.0
 @export var jump_velocity:    float = -400.0
 @export var gravity:          float = 900.0
-@export var dash_speed:       float = 400.0
+@export var dash_speed:       float = 600.0
 @export var roll_speed:       float = 300.0
 @export var wall_slide_speed: float = 60.0
 @export var wall_climb_speed: float = -120.0
@@ -147,6 +152,12 @@ func _exit_tree() -> void:
 # ─────────────────────────────────────────
 #  Animation callbacks
 # ─────────────────────────────────────────
+func tick_cooldowns(delta: float) -> void:
+	if dash_cooldown_timer > 0.0:
+		dash_cooldown_timer -= delta
+	if roll_cooldown_timer > 0.0:
+		roll_cooldown_timer -= delta
+
 func _on_anim_finished() -> void:
 	match anim.animation:
 		"attack1":
@@ -170,7 +181,8 @@ func _on_anim_finished() -> void:
 			$StateMachine._on_state_finished("Idle")
 		"death":
 			GameManager.handle_player_death()
-
+		"turn_around":
+			pass  # do nothing, Run/Idle handles it
 # ─────────────────────────────────────────
 #  Movement helpers
 # ─────────────────────────────────────────

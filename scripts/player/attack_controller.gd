@@ -6,7 +6,7 @@ extends Node2D
 var facing_right := true
 
 const ATTACK_DATA := { # [dmg, x, y, width, height, timeframe, knockback]
-	"attack1":       [10, 32,  17,  50, 40, 0.12, 250.0],
+	"attack1":       [10000, 32,  17,  50, 40, 0.12, 250.0],
 	"attack2":       [15, 32,  17,  50, 40, 0.14, 350.0],
 	"attack3":       [25, 32,  17,  50, 40, 0.16, 500.0],
 	"crouch_attack": [10, 32,  17,  50, 40, 0.10, 100.0],

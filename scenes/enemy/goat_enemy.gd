@@ -29,7 +29,7 @@ var is_dead: bool = false
 var is_aggro: bool = false
 var _hitbox_spawned: bool = false
 
-const ATTACK_DATA: Array = [1, 32, 0, 60, 50, 0.15, 300.0]
+const ATTACK_DATA: Array = [4, 32, 0, 60, 50, 0.15, 300.0]
 
 enum EnemyState { IDLE, CHASE, ATTACK }
 var state: EnemyState = EnemyState.IDLE

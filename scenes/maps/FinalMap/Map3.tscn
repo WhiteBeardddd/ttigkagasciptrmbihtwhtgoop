@@ -16744,7 +16744,7 @@ position = Vector2(464, 200)
 shape = SubResource("RectangleShape2D_koha0")
 
 [node name="Deathzone" type="Area2D" parent="." unique_id=1882078063]
-position = Vector2(-3352, 226)
+position = Vector2(-3354, 224)
 script = ExtResource("21_8o7cj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Deathzone" unique_id=464806433]
@@ -16759,7 +16759,7 @@ limit_right = 3661
 limit_bottom = 210
 
 [node name="SpawnPoint" type="Node2D" parent="." unique_id=1040207293]
-position = Vector2(1650, -52)
+position = Vector2(-5811, 113)
 
 [node name="PortalArea" parent="." unique_id=2061754388 instance=ExtResource("20_rbcwi")]
 position = Vector2(3598, 138)

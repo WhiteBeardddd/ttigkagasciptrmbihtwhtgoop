@@ -22,8 +22,8 @@
 [ext_resource type="PackedScene" uid="uid://doanxd74to6ls" path="res://scenes/enemy/Bat.tscn" id="20_2gnwh"]
 [ext_resource type="PackedScene" uid="uid://ckn1yu8ok75ey" path="res://scenes/maps/map-assets/portal_area.tscn" id="20_epi08"]
 [ext_resource type="PackedScene" uid="uid://c5f62ugc51jq4" path="res://scenes/enemy/Necromancer.tscn" id="21_drfls"]
-[ext_resource type="PackedScene" uid="uid://spx6evpma38e" path="res://scenes/characters/Godwin_HeavenWrath.tscn" id="21_sg5kb"]
 [ext_resource type="PackedScene" uid="uid://blmmj6h0xclkx" path="res://scenes/enemy/GoatEnemy.tscn" id="22_iw1nj"]
+[ext_resource type="PackedScene" uid="uid://dmca1lir46ugc" path="res://scenes/characters/Map5Boss.tscn" id="25_2gnwh"]
 [ext_resource type="Script" uid="uid://dvr6c71s3rf8k" path="res://scenes/gamebehavior/deathzone.gd" id="25_rbbrt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_he2mv"]
@@ -16682,16 +16682,11 @@ limit_right = 4618
 limit_bottom = 225
 
 [node name="SpawnPoint" type="Node2D" parent="." unique_id=1040207293]
-position = Vector2(-3720, 125)
+position = Vector2(-3715, 139)
 
 [node name="PortalArea" parent="." unique_id=2061754388 instance=ExtResource("20_epi08")]
 position = Vector2(4553, 131)
 target_map = "res://scenes/maps/FinalMap/Map6.tscn"
-
-[node name="Monsterwrath" parent="." unique_id=234447260 instance=ExtResource("21_sg5kb")]
-position = Vector2(4482, 120)
-lines = Array[String](["RAAAAAAGHHH!!!! WHO GOES THERE!!!", "YOU JUST DEFEATED THE GUARDIAN OF THE WRATH!!!", "MY ANGER TOWARDS THE GODS!!!", "REACHES THE HEAVENS!!!!"])
-npc_name = "Godwin Monsterwrath"
 
 [node name="Demon" parent="." unique_id=1530228777 instance=ExtResource("19_khwas")]
 position = Vector2(864, -46)
@@ -16703,7 +16698,7 @@ position = Vector2(1622, 134)
 position = Vector2(2448, 23)
 
 [node name="Demon4" parent="." unique_id=1879405830 instance=ExtResource("19_khwas")]
-position = Vector2(2994, 145)
+position = Vector2(2415, 131)
 
 [node name="Deathzone" type="Area2D" parent="." unique_id=538110155]
 position = Vector2(-3352, 226)
@@ -16712,4 +16707,9 @@ script = ExtResource("25_rbbrt")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Deathzone" unique_id=1501561819]
 shape = SubResource("WorldBoundaryShape2D_vxy8j")
 
-[connection signal="body_entered" from="Monsterwrath" to="Monsterwrath" method="_on_body_entered"]
+[node name="Area2D" parent="." unique_id=234447260 instance=ExtResource("25_2gnwh")]
+position = Vector2(3291, 139)
+lines = Array[String](["I see it... I see the spark inside you. It’s brighter now.", "You survived Envy. You conquered Wrath. And you brought all that beautiful power right to my feet.", "Look around you! All this gold, all these relics... and yet, it is never enough.", "My chest feels so empty, so hollow... but your soul would fill it perfectly.", "You think you came here to claim a prize? No... you are the tribute.", "Hand it over. Your strength, your breath, your very life...", "...IT ALL BELONGS TO ME!"])
+npc_name = "Malakor, The Covetous Maw"
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

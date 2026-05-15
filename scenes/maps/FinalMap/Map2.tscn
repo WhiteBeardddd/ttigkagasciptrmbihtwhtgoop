@@ -18495,7 +18495,7 @@ position = Vector2(612, 1)
 position = Vector2(968, 128)
 
 [node name="SpawnPoint" type="Node2D" parent="." unique_id=1040207293]
-position = Vector2(-4825, 134)
+position = Vector2(-4806, 124)
 
 [node name="PortalArea" parent="." unique_id=2061754388 instance=ExtResource("20_35aqg")]
 position = Vector2(3100, 125)

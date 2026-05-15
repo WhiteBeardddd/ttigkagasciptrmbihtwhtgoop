@@ -710,7 +710,7 @@ parameters/looping = true
 
 [node name="NPC" parent="." unique_id=234447260 instance=ExtResource("9_mpc2f")]
 position = Vector2(94, -234)
-lines = Array[String](["Hahahahha", "Bobo ka kasi", "Ay lageg pamaimai", "Ge away namo"])
-npc_name = "Gran Monserate"
+lines = Array[String](["You really did it. From the golden roots of Pride... all the way to the cosmic brink.", "I guided you. I watched you. I gave you just enough advice to keep you alive.", "Did you truly think I was just a tired old man who lost his way?", "No... I am the architect of this entire descent.", "You've grown so beautiful, traveler. So strong. So full of absolute power.", "And now... it is time for the guide to collect his fee.", "Look up at the sky. The stars are blinking out.", "Your journey ends where my eternity begins...", "...BEHOLD THE TRUE FACE OF THE COSMOS!"])
+npc_name = "Grand Sabandage"
 
 [connection signal="body_entered" from="NPC" to="NPC" method="_on_body_entered"]

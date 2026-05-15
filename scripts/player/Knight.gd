@@ -30,6 +30,12 @@ var combo_timer    := 0.0
 @onready var go_btn_menu:     Button         = $HUD/GameOverPanel/VBoxContainer/BtnMainMenu
 @onready var go_btn_quit:     Button         = $HUD/GameOverPanel/VBoxContainer/BtnQuit
 
+# Game Ending Panel nodes
+@onready var game_ending_panel: PanelContainer = $HUD/GameEndingPanel
+@onready var ending_map_label:    Label          = $HUD/GameEndingPanel/VBoxContainer/MapLabel
+@onready var ending_btn_menu:     Button         = $HUD/GameEndingPanel/VBoxContainer/BtnMainMenu
+@onready var ending_btn_quit:     Button         = $HUD/GameEndingPanel/VBoxContainer/BtnQuit
+
 # Pause Panel nodes
 @onready var pause_panel:  PanelContainer = $HUD/PausePanel
 @onready var p_btn_resume: Button         = $HUD/PausePanel/VBoxContainer/BtnResume
@@ -80,6 +86,14 @@ func _ready() -> void:
 	p_btn_quit.pressed.connect(_on_pause_quit)
 	go_btn_menu.pressed.connect(_on_go_btn_menu_pressed)
 	go_btn_quit.pressed.connect(func(): get_tree().quit())
+	
+	# Game Ending Panel
+	game_ending_panel.visible = false
+	ending_btn_menu.pressed.connect(func(): 
+		get_tree().paused = false
+		get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
+	)
+	ending_btn_quit.pressed.connect(func(): get_tree().quit())
 
 	# Spawn position
 	var spawn = get_tree().current_scene.get_node_or_null(GameManager.spawn_point_name)
@@ -248,3 +262,20 @@ func _on_pause_quit() -> void:
 	GameManager.save_profile()
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
+	
+func show_ending_panel() -> void:
+	await get_tree().create_timer(2.0).timeout
+
+	# Start fully transparent then fade in
+	game_ending_panel.modulate.a = 0.0
+	game_ending_panel.visible    = true
+	game_ending_panel.process_mode = Node.PROCESS_MODE_ALWAYS
+
+	# Fade in over 1.5 seconds
+	var tween := create_tween()
+	tween.tween_property(game_ending_panel, "modulate:a", 1.0, 1.5)\
+		 .set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+	await tween.finished
+
+	get_tree().paused = true

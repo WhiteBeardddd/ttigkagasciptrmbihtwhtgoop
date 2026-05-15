@@ -1015,15 +1015,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GameOverPanel" type="PanelContainer" parent="HUD" unique_id=808417660]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -640.0
-offset_top = -360.0
-offset_right = 640.0
-offset_bottom = 360.0
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -1075,17 +1070,66 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_pdaio")
 theme_override_styles/hover = SubResource("StyleBoxFlat_pdaio")
 text = "Quit Game"
 
+[node name="GameEndingPanel" type="PanelContainer" parent="HUD" unique_id=2011694568]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/GameEndingPanel" unique_id=885821050]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 15
+
+[node name="GameOver" type="Label" parent="HUD/GameEndingPanel/VBoxContainer" unique_id=1798438983]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("42_d3qap")
+theme_override_font_sizes/font_size = 40
+text = "Congratulations!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MapLabel" type="Label" parent="HUD/GameEndingPanel/VBoxContainer" unique_id=1710096519]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("44_gcc6j")
+theme_override_font_sizes/font_size = 17
+text = "The knight escapes Purgatory and begins a new chance at life."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnMainMenu" type="Button" parent="HUD/GameEndingPanel/VBoxContainer" unique_id=2039968163]
+custom_minimum_size = Vector2(320, 55)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.040052935, 0.040052935, 0.040052935, 1)
+theme_override_fonts/font = ExtResource("44_gcc6j")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_pdaio")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pdaio")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pdaio")
+text = "Main Menu"
+
+[node name="BtnQuit" type="Button" parent="HUD/GameEndingPanel/VBoxContainer" unique_id=1225518706]
+custom_minimum_size = Vector2(320, 55)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.040052935, 0.040052935, 0.040052935, 1)
+theme_override_fonts/font = ExtResource("44_gcc6j")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_pdaio")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pdaio")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pdaio")
+text = "Quit Game"
+
 [node name="PausePanel" type="PanelContainer" parent="HUD" unique_id=1015997407]
 visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -640.0
-offset_top = -360.0
-offset_right = 640.0
-offset_bottom = 360.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 

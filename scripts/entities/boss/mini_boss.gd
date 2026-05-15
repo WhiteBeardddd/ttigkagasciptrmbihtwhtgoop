@@ -38,8 +38,8 @@ const EYEBALL_DEFAULT : Vector2 = Vector2(2.042, -9.167)
 const EYEBALL_RADIUS  : float   = 11.0
 
 # ── Health ───────────────────────────────────────────────
-@export var max_hp  : int  = 200
-var current_hp      : int  = 200
+@export var max_hp  : int  = 80
+var current_hp      : int  = 80
 var is_dead         : bool = false
 
 # ── Knockback ────────────────────────────────────────────
@@ -110,11 +110,11 @@ func _ready() -> void:
 	add_child(_shooter2)
 	_shooter1.bullet_template     = attack1_design
 	_shooter1.rotate_to_direction = false
-	_shooter1.bullet_damage       = 10    # Attack1 damage
+	_shooter1.bullet_damage       = 5    # Attack1 damage
 	_shooter1.hitbox_delay         = 0.15  # short delay — bullet spawns far from player
 	_shooter2.bullet_template     = attack2_design
 	_shooter2.rotate_to_direction = true
-	_shooter2.bullet_damage       = 15    # Attack2 spread damage
+	_shooter2.bullet_damage       = 7    # Attack2 spread damage
 	_shooter2.hitbox_delay         = 0.35  # longer delay — bullets spawn near player
 
 	_find_player()

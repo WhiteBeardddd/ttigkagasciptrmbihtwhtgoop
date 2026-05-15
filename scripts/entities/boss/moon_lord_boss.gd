@@ -371,9 +371,20 @@ func _on_left_destroyed() -> void:
 	print("Left weakpoint destroyed!")
 	left_weakpoint.set_deferred("monitoring", false)
 	left_weakpoint.queue_free()
-
+	_check_both_hands_destroyed()
 
 func _on_right_destroyed() -> void:
 	print("Right weakpoint destroyed!")
 	right_weakpoint.set_deferred("monitoring", false)
 	right_weakpoint.queue_free()
+	_check_both_hands_destroyed()
+
+func _check_both_hands_destroyed() -> void:
+	var left_dead  := _left_hp  <= 0
+	var right_dead := _right_hp <= 0
+	if left_dead and right_dead:
+		is_dead = true
+		# Tell the Knight to show the ending panel
+		var knight = get_tree().current_scene.get_node_or_null("knight")
+		if knight and knight.has_method("show_ending_panel"):
+			knight.show_ending_panel()

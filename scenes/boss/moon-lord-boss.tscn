@@ -308,7 +308,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/normal_font = ExtResource("5_b3241")
 theme_override_font_sizes/normal_font_size = 30
-text = "Final Boss"
+text = "Moon Lord"
 
 [node name="RightWeakPoint" type="Area2D" parent="." unique_id=1713823312 groups=["enemy_hurtbox"]]
 position = Vector2(-52, 255)

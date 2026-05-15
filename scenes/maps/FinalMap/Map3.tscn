@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://c1fbxx41uua84"]
 
-[ext_resource type="Script" path="res://scripts/gamemanager/worldbehavior/map_base.gd" id="1_1iaro"]
+[ext_resource type="Script" uid="uid://c7dxix3o6pm3g" path="res://scripts/gamemanager/worldbehavior/map_base.gd" id="1_1iaro"]
 [ext_resource type="Texture2D" uid="uid://c7qmdgxpbu0sw" path="res://assets/CaveParallax/7.png" id="2_fcy8f"]
 [ext_resource type="Texture2D" uid="uid://bv0gnawasi50n" path="res://assets/CaveParallax/6.png" id="3_51i7m"]
 [ext_resource type="Texture2D" uid="uid://djltwfruyqqx2" path="res://assets/CaveParallax/5.png" id="4_koha0"]

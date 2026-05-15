@@ -3,14 +3,14 @@ extends CharacterBody2D
 @export var attack_range: float = 35.0
 @export var move_speed: float = 60.0
 @export var attack_cooldown: float = 2.0
-@export var max_hp: int = 60
+@export var max_hp: int = 50
 @export var knockback_force: float = 200.0
 @export var knockback_friction: float = 800.0
 
 # --- Summoning ---
-@export var summon_interval: float = 5.0
+@export var summon_interval: float = 2.5
 @export var max_minions: int = 6
-@export var summons_per_interval: int = 2
+@export var summons_per_interval: int = 4
 var minion_scene: PackedScene = preload("res://scenes/enemy/GoatEnemy.tscn")
 var active_minions: Array = []
 var summon_timer: float = 0.0
@@ -58,7 +58,8 @@ func _on_damaged(amount: int, knockback: Vector2) -> void:
 	if not is_instance_valid(player):
 		player = get_tree().get_first_node_in_group("player")
 	current_hp -= amount
-	health_bar.health = current_hp
+	if is_instance_valid(health_bar):
+		health_bar.health = current_hp
 	velocity = knockback
 	is_knocked_back = true
 	_flash_damage()
@@ -72,17 +73,27 @@ func _on_damaged(amount: int, knockback: Vector2) -> void:
 func _die() -> void:
 	if is_dead:
 		return
+	is_dead = true
+
+	# Shut down incoming damage FIRST before freeing anything
+	if is_instance_valid(hurtbox):
+		hurtbox.set_deferred("monitoring", false)
+		hurtbox.set_deferred("monitorable", false)
+
+	if hurtbox.damaged.is_connected(_on_damaged):
+		hurtbox.damaged.disconnect(_on_damaged)
+
 	collision_1.queue_free()
 	collision_2.queue_free()
-	is_dead = true
+
 	for minion in active_minions:
 		if is_instance_valid(minion):
 			minion.queue_free()
 	active_minions.clear()
+
 	if animated_sprite.animation_finished.is_connected(_on_animation_finished):
 		animated_sprite.animation_finished.disconnect(_on_animation_finished)
-	if is_instance_valid(hurtbox):
-		hurtbox.set_deferred("monitoring", false)
+
 	velocity = Vector2.ZERO
 	animated_sprite.play("death")
 	animated_sprite.animation_finished.connect(_on_death_animation_finished, CONNECT_ONE_SHOT)
@@ -102,7 +113,6 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 
-	# While summoning, just stand still and let the animation finish
 	if is_summoning:
 		velocity.x = 0.0
 		move_and_slide()
@@ -177,7 +187,6 @@ func _spawn_minions() -> void:
 	var facing: float = 1.0 if animated_sprite.flip_h else -1.0
 	for i in to_spawn:
 		var minion = minion_scene.instantiate()
-		# Spawn in front of necromancer, spread out slightly
 		var offset := Vector2(facing * randf_range(30.0, 80.0), 0.0)
 		minion.global_position = global_position + offset
 		get_tree().current_scene.add_child(minion)

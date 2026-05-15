@@ -56,7 +56,8 @@ func _on_damaged(amount: int, knockback: Vector2) -> void:
 	if not is_instance_valid(player):
 		player = get_tree().get_first_node_in_group("player")
 	current_hp -= amount
-	health_bar.health = current_hp
+	if is_instance_valid(health_bar):
+		health_bar.health = current_hp
 	velocity = knockback
 	is_knocked_back = true
 	_flash_damage()
@@ -70,15 +71,24 @@ func _on_damaged(amount: int, knockback: Vector2) -> void:
 func _die() -> void:
 	if is_dead:
 		return
+	is_dead = true
+
+	# Shut down incoming damage FIRST before freeing anything
+	if is_instance_valid(hurtbox):
+		hurtbox.set_deferred("monitoring", false)
+		hurtbox.set_deferred("monitorable", false)
+
+	if hurtbox.damaged.is_connected(_on_damaged):
+		hurtbox.damaged.disconnect(_on_damaged)
+
 	collision_1.queue_free()
 	collision_2.queue_free()
-	is_dead = true
+
 	if animated_sprite.animation_finished.is_connected(_on_animation_finished):
 		animated_sprite.animation_finished.disconnect(_on_animation_finished)
 	if animated_sprite.frame_changed.is_connected(_on_frame_changed):
 		animated_sprite.frame_changed.disconnect(_on_frame_changed)
-	if is_instance_valid(hurtbox):
-		hurtbox.set_deferred("monitoring", false)
+
 	velocity = Vector2.ZERO
 	animated_sprite.play("death")
 	animated_sprite.animation_finished.connect(_on_death_animation_finished, CONNECT_ONE_SHOT)

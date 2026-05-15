@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var attack_range: float = 35.0
 @export var move_speed: float = 60.0
 @export var attack_cooldown: float = 2.0
-@export var max_hp: int = 60
+@export var max_hp: int = 50
 @export var knockback_force: float = 200.0
 @export var knockback_friction: float = 800.0
 

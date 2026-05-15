@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cj5kqpgx1g268" path="res://scenes/enemy/rat.gd" id="1_hycqb"]
 [ext_resource type="Texture2D" uid="uid://btefxmsawinf7" path="res://scenes/enemy/rat_animation/Rat_Attack.png" id="2_hycqb"]
+[ext_resource type="AudioStream" uid="uid://dsnv45l5kb8vd" path="res://Music/Map7/Sfx pack 4 free/Hit/Hit_Hurt3.wav" id="2_qiooj"]
 [ext_resource type="Texture2D" uid="uid://ni6aykmgq2e7" path="res://scenes/enemy/rat_animation/Rat_Run.png" id="3_2xt1i"]
 [ext_resource type="Texture2D" uid="uid://cge7up3jgti5m" path="res://scenes/enemy/rat_animation/Rat_Death.png" id="3_qiooj"]
 [ext_resource type="Script" uid="uid://bigep6cow87an" path="res://scripts/entities/enemy/demon/Hurtbox.gd" id="3_t0ffp"]
@@ -204,6 +205,9 @@ radius = 470.00958
 
 [node name="Rat" type="CharacterBody2D" unique_id=861656516 groups=["enemy"]]
 script = ExtResource("1_hycqb")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="." unique_id=537798371]
+stream = ExtResource("2_qiooj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2058371199]
 sprite_frames = SubResource("SpriteFrames_mvkia")

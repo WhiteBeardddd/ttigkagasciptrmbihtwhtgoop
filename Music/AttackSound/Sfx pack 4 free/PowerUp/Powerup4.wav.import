@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://brh6qtcrw2xy6"
+path="res://.godot/imported/Powerup4.wav-133d070b1046c7956a0f75d3711ddcde.sample"
+
+[deps]
+
+source_file="res://Music/AttackSound/Sfx pack 4 free/PowerUp/Powerup4.wav"
+dest_files=["res://.godot/imported/Powerup4.wav-133d070b1046c7956a0f75d3711ddcde.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

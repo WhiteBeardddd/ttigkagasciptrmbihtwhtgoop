@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ybdssdtr5mr2"
+path="res://.godot/imported/Hit_Hurt9.wav-c0bcaef60b24ac1abd8639e8c6edc11e.sample"
+
+[deps]
+
+source_file="res://Music/Map7/Sfx pack 4 free/Hit/Hit_Hurt9.wav"
+dest_files=["res://.godot/imported/Hit_Hurt9.wav-c0bcaef60b24ac1abd8639e8c6edc11e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

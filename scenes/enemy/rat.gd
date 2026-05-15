@@ -3,8 +3,8 @@ extends CharacterBody2D
 @export var attack_range: float = 35.0
 @export var move_speed: float = 100.0
 @export var attack_cooldown: float = 2.0
-@export var max_hp: int = 5
-@export var attack_damage: int = 10
+@export var max_hp: int = 10
+@export var attack_damage: int = 2
 @export var knockback_force: float = 200.0
 @export var knockback_friction: float = 800.0
 
@@ -18,6 +18,7 @@ var hitbox_scene: PackedScene = preload("res://scenes/characters/Hitbox.tscn")
 @onready var aggro_zone: Area2D = $AggroZone
 @onready var collision_1 = $CollisionShape2D
 @onready var collision_2 = $Hurtbox/CollisionShape2D
+@onready var hit_sound: AudioStreamPlayer2D = $HitSound
 
 var player: Node2D = null
 var is_attacking: bool = false
@@ -25,13 +26,13 @@ var can_attack: bool = true
 var current_hp: int
 var is_knocked_back: bool = false
 var is_dead: bool = false
-var is_aggro: bool = false  # NEW
+var is_aggro: bool = false
 var _hitbox_spawned: bool = false
 
-const ATTACK_DATA: Array = [1, 32, 0, 60, 50, 0.15, 300.0]
+const ATTACK_DATA: Array = [2, 32, 0, 60, 50, 0.15, 300.0]
 
 enum EnemyState { IDLE, CHASE, ATTACK }
-var state: EnemyState = EnemyState.IDLE  # starts IDLE now
+var state: EnemyState = EnemyState.IDLE
 
 func _ready() -> void:
 	current_hp = max_hp
@@ -50,21 +51,20 @@ func _on_aggro_zone_body_entered(body: Node2D) -> void:
 func _on_aggro_zone_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		is_aggro = false
-		# Optional: keep chasing for a few seconds after player leaves zone
-		# is_aggro = false happens immediately here; remove if you want persistent aggro
 
 func _on_damaged(amount: int, knockback: Vector2) -> void:
 	if is_dead:
 		return
-	# Always aggro when hit, even outside the zone
 	is_aggro = true
 	if not is_instance_valid(player):
 		player = get_tree().get_first_node_in_group("player") as Node2D
 	current_hp -= amount
-	health_bar.health = current_hp
+	if is_instance_valid(health_bar):
+		health_bar.health = current_hp
 	velocity = knockback
 	is_knocked_back = true
 	_flash_damage()
+	_play_hit_sound()
 	await get_tree().create_timer(0.25).timeout
 	if is_dead:
 		return
@@ -72,18 +72,31 @@ func _on_damaged(amount: int, knockback: Vector2) -> void:
 	if current_hp <= 0:
 		_die()
 
+func _play_hit_sound() -> void:
+	if is_instance_valid(hit_sound) and hit_sound.stream != null:
+		hit_sound.play()
+
 func _die() -> void:
 	if is_dead:
 		return
+	is_dead = true
+
+	# Shut down incoming damage FIRST before freeing anything
+	if is_instance_valid(hurtbox):
+		hurtbox.set_deferred("monitoring", false)
+		hurtbox.set_deferred("monitorable", false)
+
+	if hurtbox.damaged.is_connected(_on_damaged):
+		hurtbox.damaged.disconnect(_on_damaged)
+
 	collision_1.queue_free()
 	collision_2.queue_free()
-	is_dead = true
+
 	if animated_sprite.animation_finished.is_connected(_on_animation_finished):
 		animated_sprite.animation_finished.disconnect(_on_animation_finished)
 	if animated_sprite.frame_changed.is_connected(_on_frame_changed):
 		animated_sprite.frame_changed.disconnect(_on_frame_changed)
-	if is_instance_valid(hurtbox):
-		hurtbox.set_deferred("monitoring", false)
+
 	velocity = Vector2.ZERO
 	animated_sprite.play("death")
 	animated_sprite.animation_finished.connect(_on_death_animation_finished, CONNECT_ONE_SHOT)
@@ -103,7 +116,6 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 
-	# If not aggro, just idle
 	if not is_aggro:
 		velocity.x = 0.0
 		if not is_attacking and is_on_floor():

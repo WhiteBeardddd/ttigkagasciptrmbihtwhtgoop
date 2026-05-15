@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cuk5ofron0naj"
+path="res://.godot/imported/Blip_Select6.wav-8e7e75ca82720c55961de7f70db5ce14.sample"
+
+[deps]
+
+source_file="res://Music/AttackSound/Sfx pack 4 free/Select/Blip_Select6.wav"
+dest_files=["res://.godot/imported/Blip_Select6.wav-8e7e75ca82720c55961de7f70db5ce14.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

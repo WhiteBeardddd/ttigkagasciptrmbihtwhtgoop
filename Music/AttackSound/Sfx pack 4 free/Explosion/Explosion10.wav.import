@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://1yjbne8e8m72"
+path="res://.godot/imported/Explosion10.wav-f66d50abc00d7a24d29aa7edc7541bfa.sample"
+
+[deps]
+
+source_file="res://Music/AttackSound/Sfx pack 4 free/Explosion/Explosion10.wav"
+dest_files=["res://.godot/imported/Explosion10.wav-f66d50abc00d7a24d29aa7edc7541bfa.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

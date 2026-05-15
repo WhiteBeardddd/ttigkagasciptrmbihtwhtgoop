@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://batj52dkqiuck"
+path="res://.godot/imported/Explosion.wav-ebf61070ca914c611a3df25d81e6b438.sample"
+
+[deps]
+
+source_file="res://Music/Map7/Sfx pack 4 free/Explosion/Explosion.wav"
+dest_files=["res://.godot/imported/Explosion.wav-ebf61070ca914c611a3df25d81e6b438.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

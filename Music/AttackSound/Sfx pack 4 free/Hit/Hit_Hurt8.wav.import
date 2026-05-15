@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://k5vq3bsls221"
+path="res://.godot/imported/Hit_Hurt8.wav-54a24bd088699762f73c8ad8ecff4c39.sample"
+
+[deps]
+
+source_file="res://Music/AttackSound/Sfx pack 4 free/Hit/Hit_Hurt8.wav"
+dest_files=["res://.godot/imported/Hit_Hurt8.wav-54a24bd088699762f73c8ad8ecff4c39.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

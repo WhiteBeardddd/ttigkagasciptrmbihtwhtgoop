@@ -16289,17 +16289,17 @@ priority = 1
 lines = Array[String](["Stay your step traveler. You walk upon the soil of the Forest of Pride", "a place where the trees grew so tall they tried to pierce the heavens", "Take this advice for free: in this wood, the moment you think you are master of it", "the roots will find a way to trip you", "Keep your eyes on the path and your ego in your pocket; we shall see if you have the mettle to make it to the clearing."])
 npc_name = "Grand Sabandage"
 
-[node name="Deathzone" type="Area2D" parent="Node2D" unique_id=1817821941]
-position = Vector2(1435, 297)
-script = ExtResource("20_toims")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Deathzone" unique_id=8612353]
-shape = SubResource("WorldBoundaryShape2D_ebq24")
-
 [node name="Area2D" parent="Node2D" unique_id=902552278 instance=ExtResource("27_toims")]
 position = Vector2(5097, 133)
 lines = Array[String](["Halt! There are violent beings ahead.", "Turn back know if you want to continue existing.", "A former knight? Very well I can see your confidence.", "[Left Mouse Click] to swing your sword."])
 npc_name = "Patricacus Greenveil"
+
+[node name="Deathzone" type="Area2D" parent="." unique_id=1817821941]
+position = Vector2(1435, 297)
+script = ExtResource("20_toims")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deathzone" unique_id=8612353]
+shape = SubResource("WorldBoundaryShape2D_ebq24")
 
 [node name="PortalArea" parent="." unique_id=2061754388 instance=ExtResource("20_htrr7")]
 position = Vector2(5185, 154)

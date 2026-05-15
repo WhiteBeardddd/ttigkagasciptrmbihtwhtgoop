@@ -288,7 +288,7 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="MiniBoss" type="CharacterBody2D" unique_id=218003458 groups=["enemy"]]
+[node name="MiniBoss2" type="CharacterBody2D" unique_id=218003458 groups=["enemy"]]
 script = ExtResource("1_3taky")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=24329028]

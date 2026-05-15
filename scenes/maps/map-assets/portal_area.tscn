@@ -1,15 +1,74 @@
 [gd_scene format=3 uid="uid://ckn1yu8ok75ey"]
 
 [ext_resource type="Script" uid="uid://c0yw2ldjbsrk7" path="res://scripts/gamemanager/worldbehavior/portal_area.gd" id="1_vnyms"]
+[ext_resource type="Texture2D" uid="uid://8u603fg0oe6i" path="res://scenes/maps/map-assets/portal_animation/Dimensional_Portal.png" id="2_bx018"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5npf"]
-size = Vector2(54.5, 46.5)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bx018"]
+radius = 19.0
+height = 90.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upi1w"]
+atlas = ExtResource("2_bx018")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lahp"]
+atlas = ExtResource("2_bx018")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nsjh"]
+atlas = ExtResource("2_bx018")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6rpj"]
+atlas = ExtResource("2_bx018")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_757sc"]
+atlas = ExtResource("2_bx018")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltoyd"]
+atlas = ExtResource("2_bx018")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yrecr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upi1w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lahp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0nsjh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6rpj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_757sc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltoyd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [node name="PortalArea" type="Area2D" unique_id=2061754388]
 script = ExtResource("1_vnyms")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=489788629]
-shape = SubResource("RectangleShape2D_u5npf")
+shape = SubResource("CapsuleShape2D_bx018")
 debug_color = Color(0.7449988, 0.29114598, 0.8958878, 0.41960785)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1717074090]
+position = Vector2(-2.0000005, -6.0000005)
+scale = Vector2(3.40625, 3.46875)
+sprite_frames = SubResource("SpriteFrames_yrecr")
+autoplay = "default"
+frame_progress = 0.33097616
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

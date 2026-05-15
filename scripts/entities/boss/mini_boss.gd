@@ -38,8 +38,8 @@ const EYEBALL_DEFAULT : Vector2 = Vector2(2.042, -9.167)
 const EYEBALL_RADIUS  : float   = 11.0
 
 # ── Health ───────────────────────────────────────────────
-@export var max_hp  : int  = 300
-var current_hp      : int  = 300
+@export var max_hp  : int  = 200
+var current_hp      : int  = 200
 var is_dead         : bool = false
 
 # ── Knockback ────────────────────────────────────────────

@@ -37,7 +37,6 @@ var combo_timer    := 0.0
 @onready var p_btn_quit:   Button         = $HUD/PausePanel/VBoxContainer/BtnQuit
 
 # ── Heart sprites (optional) ──────────────────────────────────────────────────
-# Add TextureRect nodes under HUD named Heart1, Heart2, Heart3 when you have art.
 @export var heart_full_texture:  Texture2D
 @export var heart_empty_texture: Texture2D
 var _heart_nodes: Array = []
@@ -64,16 +63,16 @@ func _ready() -> void:
 	# Lives
 	_refresh_lives_display()
 
-	# Heart sprites — collect nodes if they exist
+	# Heart sprites
 	_heart_nodes.clear()
 	for i in range(1, 4):
 		var node = get_node_or_null("HUD/Heart%d" % i)
 		if node:
 			_heart_nodes.append(node)
 
-	# Game Over panel — always hidden at start
+	# Game Over panel
 	game_over_panel.visible = false
-	# Pause panel — always hidden at start
+	# Pause panel
 	pause_panel.visible = false
 	pause_panel.process_mode = Node.PROCESS_MODE_ALWAYS
 	p_btn_resume.pressed.connect(_on_pause_resume)
@@ -89,7 +88,7 @@ func _ready() -> void:
 
 # ─────────────────────────────────────────
 #  HUD refresh helpers
-# ────────────────────────da─────────────────
+# ─────────────────────────────────────────
 func _refresh_lives_display() -> void:
 	if hud_life_value:
 		hud_life_value.text = str(GameManager.lives)
@@ -114,26 +113,18 @@ func _on_lives_updated() -> void:
 #  Game Over
 # ─────────────────────────────────────────
 func _on_game_over() -> void:
-	# Show the panel — game_over signal fires BEFORE scene changes
-	# so we intercept it here and block the scene change in GameManager
 	game_over_panel.visible = true
-
-	# Show which map the player reached
 	var map_display: String = GameManager.current_map.get_file().trim_suffix(".tscn")
 	go_map_label.text = "Reached: %s" % map_display
-
-	# Freeze the game so the knight doesn't keep animating
 	get_tree().paused = true
-	# Panel must be process mode Always so buttons still work while paused
 	game_over_panel.process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _on_go_btn_menu_pressed() -> void:
-	# Unpause before switching scenes
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
 
 # ─────────────────────────────────────────
-#  Scene exit — persist HP only when alive
+#  Scene exit
 # ─────────────────────────────────────────
 func _exit_tree() -> void:
 	if not _is_dead:
@@ -188,16 +179,29 @@ func apply_horizontal(dir: float) -> void:
 # ─────────────────────────────────────────
 #  Combat
 # ─────────────────────────────────────────
+
+# Called by Hurtbox.gd signal — Area2D overlap path
 func _on_damaged(amount: int, knockback: Vector2) -> void:
+	print("Knight Hurtbox signal received! Amount: ", amount)  # debug — remove later
+	if _is_dead:
+		return
+	take_hit(amount)
+
+# Called directly by bullets that use body_entered / has_method("take_damage")
+# This bridges bullets that target the knight body instead of the Hurtbox Area2D
+func take_damage(amount: int, knockback: Vector2 = Vector2.ZERO) -> void:
+	print("Knight take_damage called! Amount: ", amount)  # debug — remove later
 	if _is_dead:
 		return
 	take_hit(amount)
 
 func take_hit(amount: int = 10) -> void:
+	print("take_hit — HP before: ", GameManager.player_hp, " | damage: ", amount)  # debug
 	if _is_dead:
 		return
 	GameManager.take_damage(amount)
 	hp = GameManager.player_hp
+	print("take_hit — HP after: ", hp)  # debug — remove later
 	if hp <= 0:
 		die()
 	else:
@@ -213,8 +217,8 @@ func die() -> void:
 
 func spawn_attack_hitbox(attack_name: String) -> void:
 	attack_controller.spawn_hitbox(attack_name)
-	
-	# ─────────────────────────────────────────
+
+# ─────────────────────────────────────────
 #  Pause
 # ─────────────────────────────────────────
 func _unhandled_input(event: InputEvent) -> void:

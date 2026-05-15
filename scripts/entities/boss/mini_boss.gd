@@ -35,15 +35,15 @@ var _shooter2 : MiniBossProjectileShooter = null
 
 # ── Eyeball Tracking ─────────────────────────────────────
 const EYEBALL_DEFAULT : Vector2 = Vector2(2.042, -9.167)
-const EYEBALL_RADIUS  : float   = 11.0   # max distance from center
+const EYEBALL_RADIUS  : float   = 11.0
 
 # ── Health ───────────────────────────────────────────────
-@export var max_hp            : int   = 300
-var current_hp                : int   = 300
-var is_dead                   : bool  = false
+@export var max_hp  : int  = 300
+var current_hp      : int  = 300
+var is_dead         : bool = false
 
 # ── Knockback ────────────────────────────────────────────
-var _is_staggered              : bool  = false
+var _is_staggered : bool = false
 
 # ── Movement ─────────────────────────────────────────────
 @export var base_speed    : float = 200.0
@@ -69,9 +69,9 @@ var _is_staggered              : bool  = false
 @export var close_action_interval_max : float = 1.0
 
 # ── Projectiles ──────────────────────────────────────────
-@export var attack1_interval  : float = 3.0
-@export var attack2_interval  : float = 5.0
-@export var attack2_spread    : float = 120.0  # X offset between attack2 bullets
+@export var attack1_interval : float = 3.0
+@export var attack2_interval : float = 5.0
+@export var attack2_spread   : float = 120.0
 
 # ── Enums ────────────────────────────────────────────────
 enum MainPhase { FLYING, CLOSE }
@@ -88,37 +88,39 @@ var _bob_timer        : float   = 0.0
 var _target_pos       : Vector2 = Vector2.ZERO
 var _drift_offset     : Vector2 = Vector2.ZERO
 var _circle_angle     : float   = 0.0
-var _attack1_timer : float = 0.0
-var _attack2_timer : float = 0.0
+var _attack1_timer    : float   = 0.0
+var _attack2_timer    : float   = 0.0
 
 # ════════════════════════════════════════════════════════
 #  READY
 # ════════════════════════════════════════════════════════
 func _ready() -> void:
-	current_hp           = max_hp
-	health_bar.max_value = max_hp
-	health_bar.value     = max_hp
+	current_hp     = max_hp
+	# init_health sets max_value, value, and DamageBar — don't set value again after
+	health_bar.init_health(max_hp)
 
 	_attack1_timer = attack1_interval
 	_attack2_timer = attack2_interval * 0.5
 
-	# Hurtbox.gd on the Weakpoint emits damaged(amount, knockback)
 	weakpoint.damaged.connect(_on_weakpoint_damaged)
 
-	# Set up shooters — one per attack type
 	_shooter1 = MiniBossProjectileShooter.new()
 	_shooter2 = MiniBossProjectileShooter.new()
 	add_child(_shooter1)
 	add_child(_shooter2)
-	_shooter1.bullet_template       = attack1_design
-	_shooter1.rotate_to_direction   = false   # Attack1 fires as-is
-	_shooter2.bullet_template       = attack2_design
-	_shooter2.rotate_to_direction   = true    # Attack2 ball faces player
+	_shooter1.bullet_template     = attack1_design
+	_shooter1.rotate_to_direction = false
+	_shooter1.bullet_damage       = 10    # Attack1 damage
+	_shooter1.hitbox_delay         = 0.15  # short delay — bullet spawns far from player
+	_shooter2.bullet_template     = attack2_design
+	_shooter2.rotate_to_direction = true
+	_shooter2.bullet_damage       = 15    # Attack2 spread damage
+	_shooter2.hitbox_delay         = 0.35  # longer delay — bullets spawn near player
 
 	_find_player()
 
 # ════════════════════════════════════════════════════════
-#  FIND PLAYER — retries every frame until knight is ready
+#  FIND PLAYER
 # ════════════════════════════════════════════════════════
 func _find_player() -> void:
 	player = get_tree().current_scene.get_node_or_null("knight")
@@ -139,7 +141,6 @@ func _physics_process(delta: float) -> void:
 	if is_dead or player == null:
 		return
 
-	# Staggered — freeze AI briefly, but don't teleport
 	if _is_staggered:
 		velocity = velocity.move_toward(Vector2.ZERO, 800.0 * delta)
 		move_and_slide()
@@ -164,11 +165,8 @@ func _process(_delta: float) -> void:
 func _track_eyeball() -> void:
 	if player == null or not is_instance_valid(eyeball):
 		return
-	# Direction from boss to player in local space
-	var dir := (player.global_position - global_position).normalized()
-	# Clamp to a circle of radius EYEBALL_RADIUS around default position
+	var dir    := (player.global_position - global_position).normalized()
 	var target := EYEBALL_DEFAULT + dir * EYEBALL_RADIUS
-	# Smooth follow so it doesn't snap
 	eyeball.position = eyeball.position.lerp(target, 0.15)
 
 # ════════════════════════════════════════════════════════
@@ -205,7 +203,6 @@ func _tick_action() -> void:
 
 func _pick_action() -> void:
 	match _main_phase:
-
 		MainPhase.FLYING:
 			_action_interval = randf_range(fly_action_interval_min, fly_action_interval_max)
 			var roll := randf()
@@ -239,8 +236,8 @@ func _pick_action() -> void:
 				_action       = Action.SWOOP_CLOSE
 				_drift_offset = Vector2(randf_range(-80.0, 80.0), 0.0)
 			elif roll < 0.75:
-				_action        = Action.CIRCLE_PLAYER
-				_circle_angle  = randf_range(0.0, TAU)
+				_action       = Action.CIRCLE_PLAYER
+				_circle_angle = randf_range(0.0, TAU)
 			else:
 				_action = Action.SIDE_DASH
 				var side := 1.0 if randf() > 0.5 else -1.0
@@ -248,7 +245,6 @@ func _pick_action() -> void:
 
 func _execute_action(delta: float) -> void:
 	match _action:
-
 		Action.HOVER:
 			var target := player.global_position \
 				+ Vector2(_drift_offset.x, -hover_height + _drift_offset.y) \
@@ -285,22 +281,21 @@ func _move_toward(target: Vector2, speed: float, delta: float) -> void:
 
 # ════════════════════════════════════════════════════════
 #  DAMAGE, KNOCKBACK & DEATH
-#  Hurtbox.gd calls: weakpoint.damaged.emit(amount, knockback)
 # ════════════════════════════════════════════════════════
 func _on_weakpoint_damaged(amount: int, knockback: Vector2) -> void:
 	if is_dead:
 		return
 
+	print("Boss hit for: ", amount, " | HP before: ", current_hp)  # debug — remove later
 	current_hp = max(current_hp - amount, 0)
-
-	# Smooth health bar drop
-	var tween := create_tween()
-	tween.tween_property(health_bar, "value", float(current_hp), 0.2)
+	# Clamp to 1 so HealthBar.gd never hits 0 and queue_free()s itself —
+	# actual death + bar hiding is handled below in _die()
+	health_bar.health = max(current_hp, 1)
+	print("Boss HP after: ", current_hp)  # debug — remove later
 
 	_flash_damage()
 	_stagger()
 
-	# Interrupt AI — fly away to reposition
 	_action          = Action.FLY_UP
 	_drift_offset    = Vector2(randf_range(-200.0, 200.0), 0.0)
 	_action_timer    = 0.0
@@ -310,11 +305,10 @@ func _on_weakpoint_damaged(amount: int, knockback: Vector2) -> void:
 		_die()
 
 func _stagger() -> void:
-	# Brief freeze in place — no velocity spike so boss can't shoot off screen
 	_is_staggered = true
-	velocity = Vector2.ZERO
+	velocity       = Vector2.ZERO
 	await get_tree().create_timer(0.2).timeout
-	_is_staggered = false
+	_is_staggered  = false
 
 func _flash_damage() -> void:
 	var tween := create_tween()
@@ -326,7 +320,10 @@ func _die() -> void:
 	weakpoint.set_deferred("monitoring",  false)
 	weakpoint.set_deferred("monitorable", false)
 
-	# Free all active projectiles spawned by this boss
+	# Hide bar manually — stops HealthBar.gd from queue_free()ing itself at 0
+	if is_instance_valid(health_bar):
+		health_bar.visible = false
+
 	for node in get_parent().get_children():
 		if is_instance_valid(node) and node.has_meta("proj_active"):
 			node.queue_free()
@@ -338,52 +335,40 @@ func _die() -> void:
 
 # ════════════════════════════════════════════════════════
 #  ATTACK TIMERS
-#  Fires 40 % faster during the CLOSE phase
 # ════════════════════════════════════════════════════════
 func _handle_attack_timers(delta: float) -> void:
 	if player == null:
 		return
 	var rate := 0.6 if _main_phase == MainPhase.CLOSE else 1.0
 
-	# Attack1 — single bullet from the eye
 	_attack1_timer -= delta
 	if _attack1_timer <= 0.0:
 		_attack1_timer = attack1_interval * rate
 		_shoot_bullet(attack1_root.global_position)
 
-	# Attack2 — 4 bullets spread around the boss, all aimed at player
 	_attack2_timer -= delta
 	if _attack2_timer <= 0.0:
 		_attack2_timer = attack2_interval * rate
 		_shoot_spread()
 
 # ════════════════════════════════════════════════════════
-#  PROJECTILE SPAWNING — via Bullet.gd (extends AnimatedSprite2D)
+#  PROJECTILE SPAWNING
 # ════════════════════════════════════════════════════════
-
-# Attack1 — single bullet from the eye
 func _shoot_bullet(spawn_pos: Vector2) -> void:
 	if _shooter1 == null:
 		return
 	_shooter1.shoot_at(spawn_pos, player.global_position)
 
-# Attack2 — 4 bullets spread horizontally, all aimed at player
 func _shoot_spread() -> void:
 	if _shooter2 == null:
 		return
 	var offsets : Array[Vector2] = [
-		Vector2(-attack2_spread,        0.0),   # far left
-		Vector2(-attack2_spread * 0.5,  0.0),   # near left
-		Vector2( attack2_spread * 0.5,  0.0),   # near right
-		Vector2( attack2_spread,        0.0),   # far right
+		Vector2(-attack2_spread,       0.0),
+		Vector2(-attack2_spread * 0.5, 0.0),
+		Vector2( attack2_spread * 0.5, 0.0),
+		Vector2( attack2_spread,       0.0),
 	]
 	var boss_pos   := attack2_root.global_position
 	var player_pos := player.global_position
 	for offset in offsets:
 		_shooter2.shoot_at(boss_pos + offset, player_pos)
-
-# ════════════════════════════════════════════════════════
-#  NOTE: Bullet hit handling (damage to player, explode fx)
-#  is handled inside Bullet.gd itself or your player's
-#  hurtbox — Bullet.gd frees itself after lifetime expires.
-# ════════════════════════════════════════════════════════

@@ -290,25 +290,6 @@ animations = [{
 
 [node name="MiniBoss" type="CharacterBody2D" unique_id=218003458 groups=["enemy"]]
 script = ExtResource("1_3taky")
-max_hp = null
-base_speed = null
-surge_speed = null
-acceleration = null
-bob_amplitude = null
-bob_speed = null
-hover_height = null
-close_distance = null
-fly_up_distance = null
-side_dash_range = null
-fly_phase_duration = null
-close_phase_duration = null
-fly_action_interval_min = null
-fly_action_interval_max = null
-close_action_interval_min = null
-close_action_interval_max = null
-attack1_interval = null
-attack2_interval = null
-projectile_speed = null
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=24329028]
 
@@ -397,4 +378,3 @@ shape = SubResource("CircleShape2D_m0gp0")
 position = Vector2(-187, -37)
 scale = Vector2(0.29347825, 0.26652893)
 sprite_frames = SubResource("SpriteFrames_elutm")
-frame_progress = 0.38581672

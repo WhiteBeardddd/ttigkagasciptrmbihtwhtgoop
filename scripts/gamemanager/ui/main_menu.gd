@@ -129,10 +129,7 @@ func _on_confirm_name() -> void:
 # ─────────────────────────────────────────
 func _refresh_leaderboard() -> void:
 	leaderboard_list.clear()
-	var board := GameManager.get_leaderboard()
-	print("Leaderboard path: ", GameManager.leaderboard_path)
-	print("File exists: ", FileAccess.file_exists(GameManager.leaderboard_path))
-	print("Board size: ", board.size(), " data: ", board)
+	var board := GameManager.get_leaderboard()	
 	if board.is_empty():
 		leaderboard_list.add_item("No records yet.")
 		return

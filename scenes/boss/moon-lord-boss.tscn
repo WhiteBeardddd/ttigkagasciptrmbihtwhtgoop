@@ -267,9 +267,9 @@ visible = false
 position = Vector2(-5, 8)
 rotation = -2.4374273
 sprite_frames = SubResource("SpriteFrames_va0qh")
-frame_progress = 0.4712422
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="BulletSprite" unique_id=609053115]
+visible = false
 amount = 30
 texture = ExtResource("3_er2oj")
 lifetime = 0.4

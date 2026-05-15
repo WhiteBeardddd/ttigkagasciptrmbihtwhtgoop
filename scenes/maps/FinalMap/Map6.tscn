@@ -14,10 +14,13 @@
 [ext_resource type="Texture2D" uid="uid://dww38k3lg4rqf" path="res://assets/map2/Legacy-Fantasy - High Forest 2.3/Assets/Props-Rocks.png" id="16_k1jku"]
 [ext_resource type="Texture2D" uid="uid://nypnqngoce1l" path="res://assets/gothChurch/gothicvania church/assets/environment/columns.png" id="17_xykr8"]
 [ext_resource type="Texture2D" uid="uid://dm2e1uh4nw5kn" path="res://assets/gothChurch/gothicvania church/assets/environment/background.png" id="18_l25m4"]
+[ext_resource type="AudioStream" uid="uid://d32xpp07l8np3" path="res://Music/Map6/background-music-6.mp3" id="18_oixuj"]
 [ext_resource type="PackedScene" uid="uid://dysloytv7f22o" path="res://scenes/enemy/Demon1.tscn" id="19_jkoyt"]
 [ext_resource type="PackedScene" uid="uid://doanxd74to6ls" path="res://scenes/enemy/Bat.tscn" id="20_cbp08"]
+[ext_resource type="PackedScene" uid="uid://blxm3bkbgqn7x" path="res://scenes/characters/NPC2.tscn" id="20_ukmqw"]
+[ext_resource type="PackedScene" uid="uid://spx6evpma38e" path="res://scenes/characters/Godwin_HeavenWrath.tscn" id="21_1p38v"]
 [ext_resource type="PackedScene" uid="uid://ckn1yu8ok75ey" path="res://scenes/maps/map-assets/portal_area.tscn" id="21_64ms8"]
-[ext_resource type="AudioStream" uid="uid://ctd63bhrc7q05" path="res://Music/Map2/Beneath_the_Sunken_Path.mp3" id="22_y6xj7"]
+[ext_resource type="PackedScene" uid="uid://bkdmfdtjpocsl" path="res://scenes/characters/Map2Boss.tscn" id="22_5lt4v"]
 [ext_resource type="PackedScene" uid="uid://x2voe7o56hq5" path="res://scenes/enemy/RatMancer.tscn" id="23_w1vj1"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_ups4q"]
@@ -18514,15 +18517,16 @@ target_map = "res://scenes/maps/FinalMap/Map7.tscn"
 
 [node name="LevelCamera" type="Camera2D" parent="." unique_id=748116009]
 zoom = Vector2(3.2, 3.2)
-limit_left = -4884
+limit_left = -4887
 limit_top = -175
 limit_right = 3661
 limit_bottom = 209
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1166881370]
-stream = ExtResource("22_y6xj7")
+stream = ExtResource("18_oixuj")
 volume_db = -12.683
 autoplay = true
+parameters/looping = false
 
 [node name="Summoner" parent="." unique_id=1657212713 instance=ExtResource("23_w1vj1")]
 position = Vector2(-1473, -51)
@@ -18544,3 +18548,23 @@ position = Vector2(-2171, 118)
 
 [node name="Bat6" parent="." unique_id=950121650 instance=ExtResource("20_cbp08")]
 position = Vector2(-2080, 97)
+
+[node name="Area2D" parent="." unique_id=902552278 instance=ExtResource("20_ukmqw")]
+position = Vector2(3385, 37)
+lines = Array[String](["You are close to the final realm, knight. Beyond these halls lies Lust, the Realm of Desire.", "There waits the Moon Lord, ruler of Purgatory. It does not attack the body first... it attacks the heart, tempting lost souls with comfort, lies, and false hope."])
+npc_name = "Patricacus Greenveil"
+
+[node name="Monsterwrath" parent="." unique_id=234447260 instance=ExtResource("21_1p38v")]
+position = Vector2(-3355, 140)
+lines = Array[String](["I consumed everything I desired... food, wealth, even the time of others. Yet the hunger never disappeared.", "No matter how much this realm gives, it always asks for more in return."])
+npc_name = "Godwin Monsterwrath"
+
+[node name="Area2D2" parent="." unique_id=183682305 instance=ExtResource("22_5lt4v")]
+position = Vector2(-495, 132)
+lines = Array[String](["In life, I fought for power and victory because I believed it would finally satisfy me.", "But desire without control becomes a prison. That is why this place exists."])
+npc_name = "Summoner King"
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="Monsterwrath" to="Monsterwrath" method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D2" to="Area2D2" method="_on_body_exited"]

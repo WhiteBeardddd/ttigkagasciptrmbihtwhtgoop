@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://da2sedlbymgqm"]
 
 [ext_resource type="Script" uid="uid://5cv5de26kts0" path="res://scenes/boss/rat_king.gd" id="1_331xu"]
+[ext_resource type="AudioStream" uid="uid://rlxhnhyyg66m" path="res://Music/Map7/Weight_of_the_Throne.mp3" id="2_c7m8g"]
 [ext_resource type="PackedScene" uid="uid://bywkylskegxgj" path="res://scenes/ui/health_bar.tscn" id="2_uh0ga"]
 [ext_resource type="FontFile" uid="uid://clfgbwraji6xo" path="res://assets/brackeys_assets/fonts/PixelOperator8-Bold.ttf" id="3_c7m8g"]
 [ext_resource type="Script" uid="uid://bigep6cow87an" path="res://scripts/entities/enemy/demon/Hurtbox.gd" id="4_wfg83"]
@@ -574,6 +575,10 @@ animations = [{
 [node name="RatKing" type="CharacterBody2D" unique_id=218003458 groups=["enemy"]]
 script = ExtResource("1_331xu")
 
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1219553467]
+stream = ExtResource("2_c7m8g")
+parameters/looping = true
+
 [node name="HUD" type="CanvasLayer" parent="." unique_id=24329028]
 
 [node name="HealthBar" parent="HUD" unique_id=1233352850 instance=ExtResource("2_uh0ga")]
@@ -606,7 +611,9 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/normal_font = ExtResource("3_c7m8g")
 theme_override_font_sizes/normal_font_size = 30
-text = "Summoner King"
+text = "Envious Malakor"
+fit_content = true
+autowrap_mode = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=742963675]
 shape = SubResource("CircleShape2D_3taky")

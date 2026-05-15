@@ -18,6 +18,7 @@ var hitbox_scene: PackedScene = preload("res://scenes/characters/Hitbox.tscn")
 @onready var aggro_zone: Area2D = $AggroZone
 @onready var collision_1 = $CollisionShape2D
 @onready var collision_2 = $Hurtbox/CollisionShape2D
+@onready var death_sound: AudioStreamPlayer2D = $DeathSound
 
 var player: Node2D = null
 var is_attacking: bool = false
@@ -58,7 +59,6 @@ func _on_damaged(amount: int, knockback: Vector2) -> void:
 	if not is_instance_valid(player):
 		player = get_tree().get_first_node_in_group("player") as Node2D
 	current_hp -= amount
-	# Guard against health_bar being freed between hits and death
 	if is_instance_valid(health_bar):
 		health_bar.health = current_hp
 	velocity = knockback
@@ -76,8 +76,7 @@ func _die() -> void:
 		return
 	is_dead = true
 
-	# Shut down incoming damage FIRST before freeing anything,
-	# so queued signals from the same frame cannot sneak through.
+	# Shut down incoming damage FIRST before freeing anything
 	if is_instance_valid(hurtbox):
 		hurtbox.set_deferred("monitoring", false)
 		hurtbox.set_deferred("monitorable", false)
@@ -92,6 +91,10 @@ func _die() -> void:
 		animated_sprite.animation_finished.disconnect(_on_animation_finished)
 	if animated_sprite.frame_changed.is_connected(_on_frame_changed):
 		animated_sprite.frame_changed.disconnect(_on_frame_changed)
+
+	# Play death sound
+	if is_instance_valid(death_sound) and death_sound.stream != null:
+		death_sound.play()
 
 	velocity = Vector2.ZERO
 	animated_sprite.play("death")

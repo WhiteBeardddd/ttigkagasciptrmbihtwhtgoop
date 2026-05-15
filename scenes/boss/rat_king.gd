@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var eye_sprite   : AnimatedSprite2D = $Weakpoint/Eye
 @onready var attack1_design : AnimatedSprite2D = $"Attack1-FromEye/AttackDesign"
 @onready var attack2_design : AnimatedSprite2D = $"Attack2-SpawnObjects/AttackDesign"
+@onready var music_player : AudioStreamPlayer2D = $MusicPlayer
 
 # ── Shooters ─────────────────────────────────────────────
 var _shooter1 : MiniBossProjectileShooter = null
@@ -114,6 +115,12 @@ func _ready() -> void:
 	_shooter2.hitbox_delay        = 0.35
 
 	eye_sprite.play("idle")
+
+	# Stop background music and play boss music
+	var bg_music = get_tree().get_first_node_in_group("background_music")
+	if bg_music:
+		bg_music.stop()
+	music_player.play()
 
 	# Wait one frame so the spawner has time to set global_position
 	await get_tree().process_frame
@@ -224,7 +231,7 @@ func _enter_vulnerable_phase() -> void:
 	_main_phase       = MainPhase.VULNERABLE
 	_vulnerable_timer = 0.0
 	_action           = Action.HOVER
-	_spawn_position   = player.global_position  # land near player instead of spawn point
+	_spawn_position   = player.global_position
 	weakpoint.set_deferred("monitoring",  true)
 	weakpoint.set_deferred("monitorable", true)
 	eye_sprite.play("vulnerable")
@@ -348,6 +355,9 @@ func _die() -> void:
 	is_dead = true
 	weakpoint.set_deferred("monitoring",  false)
 	weakpoint.set_deferred("monitorable", false)
+
+	# Stop boss music
+	music_player.stop()
 
 	for minion in active_minions:
 		if is_instance_valid(minion):

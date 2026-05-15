@@ -26,7 +26,6 @@
 [ext_resource type="Texture2D" uid="uid://dk6t1nrwi5sl2" path="res://assets/PixelPlatform_Assets/Anim/torchB3.png" id="23_8d884"]
 [ext_resource type="Texture2D" uid="uid://d2mvw1hiwf7tx" path="res://assets/PixelPlatform_Assets/Anim/torchB4.png" id="24_a4qv6"]
 [ext_resource type="AudioStream" uid="uid://cht76ox5lping" path="res://Music/Map1/Midnight_Clearing.mp3" id="27_ebq24"]
-[ext_resource type="PackedScene" uid="uid://blxm3bkbgqn7x" path="res://scenes/characters/NPC2.tscn" id="27_toims"]
 [ext_resource type="PackedScene" uid="uid://bhxn808l53431" path="res://scenes/enemy/Rat.tscn" id="28_luyvy"]
 [ext_resource type="PackedScene" uid="uid://doanxd74to6ls" path="res://scenes/enemy/Bat.tscn" id="29_jog03"]
 
@@ -16289,11 +16288,6 @@ priority = 1
 lines = Array[String](["Stay your step traveler. You walk upon the soil of the Forest of Pride", "a place where the trees grew so tall they tried to pierce the heavens", "Take this advice for free: in this wood, the moment you think you are master of it", "the roots will find a way to trip you", "Keep your eyes on the path and your ego in your pocket; we shall see if you have the mettle to make it to the clearing."])
 npc_name = "Grand Sabandage"
 
-[node name="Area2D" parent="Node2D" unique_id=902552278 instance=ExtResource("27_toims")]
-position = Vector2(5097, 133)
-lines = Array[String](["Halt! There are violent beings ahead.", "Turn back know if you want to continue existing.", "A former knight? Very well I can see your confidence.", "[Left Mouse Click] to swing your sword."])
-npc_name = "Patricacus Greenveil"
-
 [node name="Deathzone" type="Area2D" parent="." unique_id=1817821941]
 position = Vector2(1435, 297)
 script = ExtResource("20_toims")
@@ -16358,4 +16352,3 @@ position = Vector2(4375, 34)
 [connection signal="body_exited" from="Node2D/Area2D4" to="Node2D/Area2D4" method="_on_body_exited"]
 [connection signal="body_entered" from="Node2D/Area2D3" to="Node2D/Area2D3" method="_on_body_entered"]
 [connection signal="body_exited" from="Node2D/Area2D3" to="Node2D/Area2D3" method="_on_body_exited"]
-[connection signal="body_entered" from="Node2D/Area2D" to="Node2D/Area2D" method="_on_body_entered"]

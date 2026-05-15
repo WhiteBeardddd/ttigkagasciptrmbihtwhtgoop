@@ -10,7 +10,7 @@ extends CharacterBody2D
 # --- Summoning ---
 @export var summon_interval: float = 2.5
 @export var max_minions: int = 6
-@export var summons_per_interval: int = 4
+@export var summons_per_interval: int = 3
 var minion_scene: PackedScene = preload("res://scenes/enemy/GoatEnemy.tscn")
 var active_minions: Array = []
 var summon_timer: float = 0.0
@@ -23,6 +23,8 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity") a
 @onready var aggro_zone: Area2D = $AggroZone
 @onready var collision_1 = $CollisionShape2D
 @onready var collision_2 = $Hurtbox/CollisionShape2D
+@onready var death_sound: AudioStreamPlayer2D = $DeathSound
+@onready var summon_sound: AudioStreamPlayer2D = $SummonSound
 
 var player: Node2D = null
 var current_hp: int
@@ -93,6 +95,10 @@ func _die() -> void:
 
 	if animated_sprite.animation_finished.is_connected(_on_animation_finished):
 		animated_sprite.animation_finished.disconnect(_on_animation_finished)
+
+	# Play death sound
+	if is_instance_valid(death_sound) and death_sound.stream != null:
+		death_sound.play()
 
 	velocity = Vector2.ZERO
 	animated_sprite.play("death")
@@ -171,6 +177,9 @@ func _handle_state() -> void:
 func _start_summon() -> void:
 	is_summoning = true
 	velocity.x = 0.0
+	# Play summon sound when the summon animation begins
+	if is_instance_valid(summon_sound) and summon_sound.stream != null:
+		summon_sound.play()
 	animated_sprite.play("summon")
 
 func _on_animation_finished() -> void:

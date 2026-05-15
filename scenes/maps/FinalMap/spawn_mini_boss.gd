@@ -1,11 +1,11 @@
 extends Area2D
 
 @onready var mini_boss_scene = preload("res://scenes/boss/mini-boss.tscn")
-
 @onready var portal_area:   Area2D = $"../../PortalArea"
 @onready var monster_wrath: Area2D = $"../../Monsterwrath"
 
 var is_spawned: bool = false
+
 signal boss_defeated
 
 func _ready() -> void:
@@ -19,6 +19,7 @@ func _on_body_entered(body: Node) -> void:
 		print("Knight entered — spawning MiniBoss!")
 		var boss = mini_boss_scene.instantiate()
 		get_parent().add_child(boss)
+		boss.global_position = global_position + Vector2(0, -150)
 		boss.tree_exiting.connect(_on_boss_defeated)
 
 func _on_boss_defeated() -> void:

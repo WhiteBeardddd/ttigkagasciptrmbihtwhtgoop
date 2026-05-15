@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://c5f62ugc51jq4"]
 
 [ext_resource type="Script" uid="uid://bxriqrkfl1lnu" path="res://scenes/enemy/necromancer.gd" id="1_jrlkc"]
+[ext_resource type="AudioStream" uid="uid://cyry8rxjibsiv" path="res://scenes/enemy/EnemySounds/16_bit_necromancer_d_#4-1778877209869.wav" id="2_5a6ad"]
 [ext_resource type="Texture2D" uid="uid://vshe27vf0f6" path="res://scenes/enemy/Necromancer/Necromancer_creativekind-Sheet.png" id="2_24s6u"]
 [ext_resource type="Script" uid="uid://bigep6cow87an" path="res://scripts/entities/enemy/demon/Hurtbox.gd" id="3_5a6ad"]
+[ext_resource type="AudioStream" uid="uid://gf5qp2ljt4ys" path="res://scenes/enemy/EnemySounds/16_bit_necromancer_s_#3-1778878972278.wav" id="3_v878p"]
 [ext_resource type="PackedScene" uid="uid://bywkylskegxgj" path="res://scenes/ui/health_bar.tscn" id="4_v878p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5a6ad"]
@@ -306,6 +308,14 @@ radius = 470.00958
 
 [node name="Summoner" type="CharacterBody2D" unique_id=861656516 groups=["enemy"]]
 script = ExtResource("1_jrlkc")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=764276122]
+stream = ExtResource("2_5a6ad")
+pitch_scale = 0.87
+
+[node name="SummonSound" type="AudioStreamPlayer2D" parent="." unique_id=1401142819]
+stream = ExtResource("3_v878p")
+pitch_scale = 0.83
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2058371199]
 sprite_frames = SubResource("SpriteFrames_mvkia")

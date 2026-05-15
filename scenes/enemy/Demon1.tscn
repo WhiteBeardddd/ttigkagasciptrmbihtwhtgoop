@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://btq87t375olvx" path="res://scripts/entities/enemy/demon/demon_1.gd" id="1_1xnnm"]
 [ext_resource type="Texture2D" uid="uid://0xde5u5drvqf" path="res://assets/demon_animation/animations/west/spritesheet.png" id="1_ivmi1"]
+[ext_resource type="AudioStream" uid="uid://bi7xr5puxh1d8" path="res://scenes/enemy/EnemySounds/16_bit_demon_death_s_#1-1778878384173.wav" id="2_00mtp"]
 [ext_resource type="Texture2D" uid="uid://cuhm3r15id1jg" path="res://assets/demon_animation/animations/punching_west/spritesheet (1).png" id="3_3ae06"]
 [ext_resource type="Texture2D" uid="uid://b3w3gbfgce80q" path="res://scenes/enemy/animations/die/spritesheet (3).png" id="3_y7lej"]
 [ext_resource type="Texture2D" uid="uid://du88refgmq071" path="res://assets/demon_animation/animations/flying/spritesheet (2).png" id="4_dw28v"]
@@ -195,7 +196,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -296,9 +297,12 @@ radius = 409.78165
 [node name="Demon" type="CharacterBody2D" unique_id=861656516 groups=["enemy"]]
 script = ExtResource("1_1xnnm")
 
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=1642371548]
+stream = ExtResource("2_00mtp")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2058371199]
 sprite_frames = SubResource("SpriteFrames_mvkia")
-animation = &"attack"
+animation = &"death"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2073435810]

@@ -16,6 +16,7 @@ var hitbox_scene: PackedScene = preload("res://scenes/characters/Hitbox.tscn")
 @onready var aggro_zone: Area2D = $AggroZone
 @onready var collision_1 = $CollisionShape2D
 @onready var collision_2 = $Hurtbox/CollisionShape2D
+@onready var death_sound: AudioStreamPlayer2D = $DeathSound
 
 var player: Node2D = null
 var is_attacking: bool = false
@@ -88,6 +89,10 @@ func _die() -> void:
 		animated_sprite.animation_finished.disconnect(_on_animation_finished)
 	if animated_sprite.frame_changed.is_connected(_on_frame_changed):
 		animated_sprite.frame_changed.disconnect(_on_frame_changed)
+
+	# Play death sound
+	if is_instance_valid(death_sound) and death_sound.stream != null:
+		death_sound.play()
 
 	velocity = Vector2.ZERO
 	animated_sprite.play("death")

@@ -2,9 +2,11 @@ extends Area2D
 
 @export var lines: Array[String] = []
 @export var npc_name: String = ""
+
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var prompt_label: Label = $Label
 @onready var final_boss = preload("res://scenes/boss/RatKing.tscn")
+
 var boss_spawned := false
 
 func _ready() -> void:
@@ -34,6 +36,11 @@ func wait_for_dialog_end() -> void:
 		await get_tree().process_frame
 
 func spawn_boss() -> void:
+	# Stop background music
+	var bg_music = get_tree().get_first_node_in_group("background_music")
+	if bg_music:
+		bg_music.stop()
+
 	var spawn_pos := global_position
 	var boss = final_boss.instantiate()
 	get_parent().add_child(boss)

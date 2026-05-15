@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bipeech23tlgi" path="res://scenes/enemy/goat_enemy.gd" id="1_qmw8e"]
 [ext_resource type="Texture2D" uid="uid://bc5qmt1u53306" path="res://scenes/enemy/GoatEnemy/goatman.png" id="2_2sucq"]
+[ext_resource type="AudioStream" uid="uid://bbicnnt2hjhf" path="res://scenes/enemy/EnemySounds/16_bit_demonic_goat__#3-1778877509002.wav" id="2_8ykm2"]
 [ext_resource type="Script" uid="uid://bigep6cow87an" path="res://scripts/entities/enemy/demon/Hurtbox.gd" id="6_kxwy4"]
 [ext_resource type="PackedScene" uid="uid://bywkylskegxgj" path="res://scenes/ui/health_bar.tscn" id="7_soem8"]
 
@@ -208,6 +209,9 @@ radius = 470.00958
 
 [node name="GoatMan" type="CharacterBody2D" unique_id=861656516 groups=["enemy"]]
 script = ExtResource("1_qmw8e")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=1185745738]
+stream = ExtResource("2_8ykm2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2058371199]
 sprite_frames = SubResource("SpriteFrames_mvkia")

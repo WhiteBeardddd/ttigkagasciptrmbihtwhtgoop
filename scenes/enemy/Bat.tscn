@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://doanxd74to6ls"]
 
 [ext_resource type="Script" uid="uid://bx4as1igw8gn" path="res://scenes/enemy/bat.gd" id="1_8fniq"]
+[ext_resource type="AudioStream" uid="uid://caxkrfe2u1yda" path="res://scenes/enemy/EnemySounds/16_bit_bat_dying_sou_#3-1778876662018.wav" id="2_3ayax"]
 [ext_resource type="Texture2D" uid="uid://d0ackq2j6c31u" path="res://scenes/enemy/bat_animation/Bat-Attack1.png" id="2_k74vj"]
 [ext_resource type="Texture2D" uid="uid://bg8ukgb4vhbtp" path="res://scenes/enemy/bat_animation/Bat-Die.png" id="3_i722t"]
 [ext_resource type="Texture2D" uid="uid://qpj8gh5ciuf6" path="res://scenes/enemy/bat_animation/Bat-IdleFly.png" id="4_owc8s"]
@@ -302,6 +303,9 @@ radius = 501.06387
 
 [node name="Bat" type="CharacterBody2D" unique_id=861656516 groups=["enemy"]]
 script = ExtResource("1_8fniq")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=579835090]
+stream = ExtResource("2_3ayax")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2058371199]
 sprite_frames = SubResource("SpriteFrames_mvkia")
